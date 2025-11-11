@@ -1,0 +1,21 @@
+Added Pin To Net: NetName=RD0 Pin=IC2-20
+Added Pin To Net: NetName=RD0 Pin=JP3-2
+Added Pin To Net: NetName=RD2 Pin=JP3-3
+Added Pin To Net: NetName=RD2 Pin=JP3-3
+Added Pin To Net: NetName=RD3 Pin=JP3-4
+Added Pin To Net: NetName=RD3 Pin=JP3-4
+Added Pin To Net: NetName=RD4 Pin=JP3-5
+Added Pin To Net: NetName=RD4 Pin=JP3-5
+Added Pin To Net: NetName=RD5 Pin=JP3-6
+Added Pin To Net: NetName=RD5 Pin=JP3-6
+Added Pin To Net: NetName=RD6 Pin=JP3-7
+Added Pin To Net: NetName=RD6 Pin=JP3-7
+Added Pin To Net: NetName=NetJP3_1 Pin=JP3-1
+Added Pin To Net: NetName=NetJP3_1 Pin=JP3-1
+Added Net: Name=NetJP3_1
+Added Pin To Net: NetName=NetJP3_8 Pin=JP3-8
+Added Pin To Net: NetName=NetJP3_8 Pin=JP3-8
+Added Net: Name=NetJP3_8
+Added Member To Class: ClassName=pic Member=Component JP1 JP8 PIN
+Added Member To Class: ClassName=pic Member=Component JP3 JP8 PIN
+Added Member To Class: ClassName=pic Member=Component JP4 JP8 PIN

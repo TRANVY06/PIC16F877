@@ -1,0 +1,8 @@
+Add Component: Footprint Not Found D-46_6A
+Added Component: Designator=HD2(HED8V)
+Add Pin To Net: Unknown Pin: Pin D1-1
+Add Pin To Net: Unknown Pin: Pin D1-2
+Add Pin To Net: Unknown Pin: Pin D1-3
+Add Pin To Net: Unknown Pin: Pin D1-4
+Add Class Member: Failed to add class member : Component D1 Bridge2
+Added Member To Class: ClassName=pic Member=Component HD2 Header 8

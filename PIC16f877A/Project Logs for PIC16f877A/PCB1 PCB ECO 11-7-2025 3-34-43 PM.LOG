@@ -1,0 +1,35 @@
+Removed Pin From Net: NetName=RD3 Pin=JP3_1-1
+Removed Pin From Net: NetName=RD2 Pin=JP3_1-2
+Removed Pin From Net: NetName=RD1 Pin=JP3_1-3
+Removed Pin From Net: NetName=RD0 Pin=JP3_1-4
+Removed Pin From Net: NetName=RD7 Pin=JP3_2-1
+Removed Pin From Net: NetName=RD6 Pin=JP3_2-2
+Removed Pin From Net: NetName=RD5 Pin=JP3_2-3
+Removed Pin From Net: NetName=RD4 Pin=JP3_2-4
+Removed Pin From Net: NetName=RC3 Pin=JP4_1-1
+Removed Pin From Net: NetName=RC2 Pin=JP4_1-2
+Removed Pin From Net: NetName=RC1 Pin=JP4_1-3
+Removed Pin From Net: NetName=RC0 Pin=JP4_1-4
+Removed Pin From Net: NetName=RC7 Pin=JP4_2-1
+Removed Pin From Net: NetName=RC6 Pin=JP4_2-2
+Removed Pin From Net: NetName=RC5 Pin=JP4_2-3
+Removed Pin From Net: NetName=RC4 Pin=JP4_2-4
+Added Pin To Net: NetName=RD4 Pin=JP3_1-1
+Added Pin To Net: NetName=RD5 Pin=JP3_1-2
+Added Pin To Net: NetName=RD6 Pin=JP3_1-3
+Added Pin To Net: NetName=RD7 Pin=JP3_1-4
+Added Pin To Net: NetName=RD0 Pin=JP3_2-1
+Added Pin To Net: NetName=RD1 Pin=JP3_2-2
+Added Pin To Net: NetName=RD2 Pin=JP3_2-3
+Added Pin To Net: NetName=RD3 Pin=JP3_2-4
+Added Pin To Net: NetName=RC0 Pin=JP4_1-1
+Added Pin To Net: NetName=RC1 Pin=JP4_1-2
+Added Pin To Net: NetName=RC2 Pin=JP4_1-3
+Added Pin To Net: NetName=RC3 Pin=JP4_1-4
+Added Pin To Net: NetName=RC4 Pin=JP4_2-1
+Added Pin To Net: NetName=RC5 Pin=JP4_2-2
+Added Pin To Net: NetName=RC6 Pin=JP4_2-3
+Added Pin To Net: NetName=RC7 Pin=JP4_2-4
+Added Member To Class: ClassName=pic Member=Component JP1 JP8 PIN
+Added Member To Class: ClassName=pic Member=Component JP3 JP8 PIN
+Added Member To Class: ClassName=pic Member=Component JP4 JP8 PIN

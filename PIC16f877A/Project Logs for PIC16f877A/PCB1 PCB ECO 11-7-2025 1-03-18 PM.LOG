@@ -1,0 +1,6 @@
+Added Component: Designator=HD2(HED4)
+Add component (AddParameter): Name = "Value"; Value = "Header 4"; VariantName = "[No Variations]"
+Added Member To Class: ClassName=pic Member=Component HD2 Header 4
+Added Member To Class: ClassName=pic Member=Component JP1 JP8 PIN
+Added Member To Class: ClassName=pic Member=Component JP3 JP8 PIN
+Added Member To Class: ClassName=pic Member=Component JP4 JP8 PIN

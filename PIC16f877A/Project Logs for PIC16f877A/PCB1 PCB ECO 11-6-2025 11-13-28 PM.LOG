@@ -1,0 +1,29 @@
+Added Component: Designator=DB1(DIODE CAU 10A CAM)
+Add component (AddParameter): Name = "Chung_Loai"; Value = "c?m"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Don_Vi"; Value = "Con"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ghi_Chu"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Kieu_Chan"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ma_Hang"; Value = "MH004295"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ten_Linh_Kien"; Value = "Diode C?u 10A 1000V KBU1010"; VariantName = "[No Variations]"
+Added Component: Designator=DB2(DIODE CAU 10A CAM)
+Add component (AddParameter): Name = "Chung_Loai"; Value = "c?m"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Don_Vi"; Value = "Con"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ghi_Chu"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Kieu_Chan"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ma_Hang"; Value = "MH004295"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ten_Linh_Kien"; Value = "Diode C?u 10A 1000V KBU1010"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=NetD1_2 Pin=DB1-3
+Added Pin To Net: NetName=GND Pin=DB1-4
+Change Net Name : Old Net Name=NetD1_2 New Net Name=NetDB1_3
+Added Pin To Net: NetName=NetDB1_1 Pin=DB1-1
+Added Pin To Net: NetName=NetDB1_1 Pin=R2-1
+Added Net: Name=NetDB1_1
+Added Pin To Net: NetName=NetDB1_2 Pin=DB1-2
+Added Pin To Net: NetName=NetDB1_2 Pin=HD1-2
+Added Pin To Net: NetName=NetDB1_2 Pin=JDC1-1
+Added Net: Name=NetDB1_2
+Added Member To Class: ClassName=pic Member=Component DB1 10A 1000V
+Added Member To Class: ClassName=pic Member=Component DB2 10A 1000V
+Added Member To Class: ClassName=pic Member=Component JP1 JP8 PIN
+Added Member To Class: ClassName=pic Member=Component JP3 JP8 PIN
+Added Member To Class: ClassName=pic Member=Component JP4 JP8 PIN

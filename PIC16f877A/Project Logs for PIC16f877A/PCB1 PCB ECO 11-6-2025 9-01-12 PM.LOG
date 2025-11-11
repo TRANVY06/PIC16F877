@@ -1,0 +1,33 @@
+Change Component Comment : Designator=HD2 Old Comment=Header 8 New Comment=JP8 PIN
+Add Component: Footprint Not Found D-46_6A
+Added Component: Designator=P1_1(HED3)
+Add component (AddParameter): Name = "Value"; Value = "Header 3"; VariantName = "[No Variations]"
+Added Component: Designator=P2_1(HED3)
+Add component (AddParameter): Name = "Value"; Value = "Header 3"; VariantName = "[No Variations]"
+Added Component: Designator=P3_1(HED3)
+Add component (AddParameter): Name = "Value"; Value = "Header 3"; VariantName = "[No Variations]"
+Add Pin To Net: Unknown Pin: Pin D1-1
+Add Pin To Net: Unknown Pin: Pin D1-2
+Add Pin To Net: Unknown Pin: Pin D1-3
+Add Pin To Net: Unknown Pin: Pin D1-4
+Added Pin To Net: NetName=RD7 Pin=HD2-1
+Added Pin To Net: NetName=RD6 Pin=HD2-2
+Added Pin To Net: NetName=RD5 Pin=HD2-3
+Added Pin To Net: NetName=RD4 Pin=HD2-4
+Added Pin To Net: NetName=RD3 Pin=HD2-5
+Added Pin To Net: NetName=RD2 Pin=HD2-6
+Added Pin To Net: NetName=RD1 Pin=HD2-7
+Added Pin To Net: NetName=RD0 Pin=HD2-8
+Added Pin To Net: NetName=GND Pin=P1_1-1
+Added Pin To Net: NetName=+5 Pin=P1_1-2
+Added Pin To Net: NetName=GND Pin=P1_1-3
+Added Pin To Net: NetName=GND Pin=P2_1-1
+Added Pin To Net: NetName=+5 Pin=P2_1-2
+Added Pin To Net: NetName=GND Pin=P2_1-3
+Added Pin To Net: NetName=GND Pin=P3_1-1
+Added Pin To Net: NetName=+5 Pin=P3_1-2
+Added Pin To Net: NetName=GND Pin=P3_1-3
+Add Class Member: Failed to add class member : Component D1 Bridge2
+Added Member To Class: ClassName=pic Member=Component P1_1 Header 3
+Added Member To Class: ClassName=pic Member=Component P2_1 Header 3
+Added Member To Class: ClassName=pic Member=Component P3_1 Header 3

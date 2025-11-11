@@ -1,0 +1,118 @@
+Add Component: Footprint Not Found CP1.5/3.4
+Add Component: Footprint Not Found CN2
+Add Component: Footprint Not Found CN2
+Add Component: Footprint Not Found CP1.5/3.4
+Add Component: Footprint Not Found CN2
+Add Component: Footprint Not Found CN2
+Add Component: Footprint Not Found CN1
+Add Component: Footprint Not Found CN1
+Add Component: Footprint Not Found D-46_6A
+Add Component: Footprint Not Found HED2
+Add Component: Footprint Not Found QTO-220
+Added Component: Designator=IC2(DIP40/W0.6)
+Add component (AddParameter): Name = "Copyright by"; Value = "VanDungEvn"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "PIC16F877A"; VariantName = "[No Variations]"
+Add Component: Footprint Not Found JP3
+Add Component: Footprint Not Found DC-IN
+Add Component: Footprint Not Found JP8
+Add Component: Footprint Not Found JP6
+Add Component: Footprint Not Found JP8
+Add Component: Footprint Not Found JP8
+Add Component: Footprint Not Found JP6
+Add Component: Footprint Not Found LED-3
+Add Component: Footprint Not Found HDR1X3
+Add Component: Footprint Not Found HDR1X3
+Add Component: Footprint Not Found HDR1X3
+Add Component: Footprint Not Found R1/2W
+Add Component: Footprint Not Found R1W
+Add Component: Footprint Not Found R1/2W
+Add Component: Footprint Not Found R1/2W
+Add Component: Footprint Not Found SW2
+Add Component: Footprint Not Found XT2
+Added Pin To Net: NetName=+5 Pin=IC2-11
+Added Pin To Net: NetName=+5 Pin=IC2-32
+Added Net: Name=+5
+Added Pin To Net: NetName=GND Pin=IC2-12
+Added Pin To Net: NetName=GND Pin=IC2-31
+Added Net: Name=GND
+Added Pin To Net: NetName=MCLR Pin=IC2-1
+Added Net: Name=MCLR
+Added Net: Name=NetC2_2
+Added Pin To Net: NetName=NetC7_2 Pin=IC2-13
+Added Net: Name=NetC7_2
+Added Pin To Net: NetName=NetC8_2 Pin=IC2-14
+Added Net: Name=NetC8_2
+Added Net: Name=NetD1_1
+Added Net: Name=NetD1_2
+Added Net: Name=NetD1_4
+Added Pin To Net: NetName=NetIC2_33 Pin=IC2-33
+Added Net: Name=NetIC2_33
+Added Pin To Net: NetName=NetIC2_34 Pin=IC2-34
+Added Net: Name=NetIC2_34
+Added Pin To Net: NetName=NetIC2_35 Pin=IC2-35
+Added Net: Name=NetIC2_35
+Added Pin To Net: NetName=NetIC2_36 Pin=IC2-36
+Added Net: Name=NetIC2_36
+Added Pin To Net: NetName=NetIC2_37 Pin=IC2-37
+Added Net: Name=NetIC2_37
+Added Pin To Net: NetName=NetIC2_38 Pin=IC2-38
+Added Net: Name=NetIC2_38
+Added Net: Name=NetLED1_1
+Added Net: Name=NetR3_1
+Added Pin To Net: NetName=PGC Pin=IC2-39
+Added Net: Name=PGC
+Added Pin To Net: NetName=PGD Pin=IC2-40
+Added Net: Name=PGD
+Added Pin To Net: NetName=RA0 Pin=IC2-2
+Added Net: Name=RA0
+Added Pin To Net: NetName=RA1 Pin=IC2-3
+Added Net: Name=RA1
+Added Pin To Net: NetName=RA2 Pin=IC2-4
+Added Net: Name=RA2
+Added Pin To Net: NetName=RA3 Pin=IC2-5
+Added Net: Name=RA3
+Added Pin To Net: NetName=RA4 Pin=IC2-6
+Added Net: Name=RA4
+Added Pin To Net: NetName=RA5 Pin=IC2-7
+Added Net: Name=RA5
+Added Pin To Net: NetName=RC0 Pin=IC2-15
+Added Net: Name=RC0
+Added Pin To Net: NetName=RC1 Pin=IC2-16
+Added Net: Name=RC1
+Added Pin To Net: NetName=RC2 Pin=IC2-17
+Added Net: Name=RC2
+Added Pin To Net: NetName=RC3 Pin=IC2-18
+Added Net: Name=RC3
+Added Pin To Net: NetName=RC4 Pin=IC2-23
+Added Net: Name=RC4
+Added Pin To Net: NetName=RC5 Pin=IC2-24
+Added Net: Name=RC5
+Added Pin To Net: NetName=RC6 Pin=IC2-25
+Added Net: Name=RC6
+Added Pin To Net: NetName=RC7 Pin=IC2-26
+Added Net: Name=RC7
+Added Pin To Net: NetName=RD0 Pin=IC2-19
+Added Net: Name=RD0
+Added Pin To Net: NetName=RD1 Pin=IC2-20
+Added Net: Name=RD1
+Added Pin To Net: NetName=RD2 Pin=IC2-21
+Added Net: Name=RD2
+Added Pin To Net: NetName=RD3 Pin=IC2-22
+Added Net: Name=RD3
+Added Pin To Net: NetName=RD4 Pin=IC2-27
+Added Net: Name=RD4
+Added Pin To Net: NetName=RD5 Pin=IC2-28
+Added Net: Name=RD5
+Added Pin To Net: NetName=RD6 Pin=IC2-29
+Added Net: Name=RD6
+Added Pin To Net: NetName=RD7 Pin=IC2-30
+Added Net: Name=RD7
+Added Pin To Net: NetName=RE0 Pin=IC2-8
+Added Net: Name=RE0
+Added Pin To Net: NetName=RE1 Pin=IC2-9
+Added Net: Name=RE1
+Added Pin To Net: NetName=RE2 Pin=IC2-10
+Added Net: Name=RE2
+Added Class: Name=pic
+Added Rule: Name=Schematic Supply Nets
+Added Rule: Name=Schematic Supply Nets_1

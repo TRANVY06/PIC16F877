@@ -1,0 +1,27 @@
+Change Component Designator: OldDesignator=HD2 NewDesignator=JP3
+Add Component: Footprint Not Found D-46_6A
+Added Component: Designator=JP1(HED8V)
+Added Component: Designator=JP4(HED8V)
+Add Pin To Net: Unknown Pin: Pin D1-1
+Add Pin To Net: Unknown Pin: Pin D1-2
+Add Pin To Net: Unknown Pin: Pin D1-3
+Add Pin To Net: Unknown Pin: Pin D1-4
+Added Pin To Net: NetName=PGD Pin=JP1-1
+Added Pin To Net: NetName=PGC Pin=JP1-2
+Added Pin To Net: NetName=NetIC2_38 Pin=JP1-3
+Added Pin To Net: NetName=NetIC2_37 Pin=JP1-4
+Added Pin To Net: NetName=NetIC2_36 Pin=JP1-5
+Added Pin To Net: NetName=NetIC2_35 Pin=JP1-6
+Added Pin To Net: NetName=NetIC2_34 Pin=JP1-7
+Added Pin To Net: NetName=NetIC2_33 Pin=JP1-8
+Added Pin To Net: NetName=RC0 Pin=JP4-1
+Added Pin To Net: NetName=RC1 Pin=JP4-2
+Added Pin To Net: NetName=RC2 Pin=JP4-3
+Added Pin To Net: NetName=RC3 Pin=JP4-4
+Added Pin To Net: NetName=RC4 Pin=JP4-5
+Added Pin To Net: NetName=RC5 Pin=JP4-6
+Added Pin To Net: NetName=RC6 Pin=JP4-7
+Added Pin To Net: NetName=RC7 Pin=JP4-8
+Add Class Member: Failed to add class member : Component D1 Bridge2
+Added Member To Class: ClassName=pic Member=Component JP1 JP8 PIN
+Added Member To Class: ClassName=pic Member=Component JP4 JP8 PIN
