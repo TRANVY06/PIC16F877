@@ -22,9 +22,12 @@
                    projectFiles="true">
       <itemPath>main.c</itemPath>
       <itemPath>lcd.c</itemPath>
-      <itemPath>button.c</itemPath>
+      <itemPath>D:/Zalo Received Files/Bai_1_GPIO (1).X/button.c</itemPath>
     </logicalFolder>
   </logicalFolder>
+  <sourceRootList>
+    <Elem>D:/Zalo Received Files/Bai_1_GPIO (1).X</Elem>
+  </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
     <conf name="default" type="2">

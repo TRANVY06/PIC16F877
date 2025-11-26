@@ -3308,6 +3308,7 @@ int Number() {
     if (key_code[10] == 1)
         return 9;
 }
+
 void main(void) {
     ANSEL = 0;
     ANSELH = 0;

@@ -40,7 +40,10 @@ int Number() {
     if (key_code[10] == 1)
         return 9;
 }
+
 void main(void) {
+    ANSEL = 0;
+    ANSELH = 0;
     init_key_matrix();
     lcd_init();
     lcd_gotoxy(0, 0);
@@ -49,10 +52,10 @@ void main(void) {
     lcd_clear();
 
     while (1) {
-        scan_key_matrix();   // quét ?? c?p nh?t key_code[]
+        scan_key_matrix(); // quét ?? c?p nh?t key_code[]
         isButtonNumber();
         lcd_gotoxy(0, 0);
-        if (isprint(numberValue)) 
+        if (isprint(numberValue))
             printf("%c ", numberValue);
         else
             printf("%d ", numberValue);

@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V3.10 build 20250813170317 
-                                                                                               Tue Nov  4 20:20:35 2025
+                                                                                               Thu Nov 13 22:58:41 2025
 
 Microchip MPLAB XC8 C Compiler v3.10 (Free license) build 20250813170317 Og1 
      1                           	processor	16F887
@@ -935,7 +935,7 @@ Microchip MPLAB XC8 C Compiler v3.10 (Free license) build 20250813170317 Og1
    921 ;;
    922 ;; *************** function _main *****************
    923 ;; Defined at:
-   924 ;;		line 43 in file "main.c"
+   924 ;;		line 44 in file "main.c"
    925 ;; Parameters:    Size  Location     Type
    926 ;;		None
    927 ;; Auto vars:     Size  Location     Type
@@ -977,36 +977,36 @@ Microchip MPLAB XC8 C Compiler v3.10 (Free license) build 20250813170317 Og1
    963                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+pclath+btemp1+cstack]
    964                           
    965                           
-   966                           ;main.c: 44:     ANSEL = 0;
+   966                           ;main.c: 45:     ANSEL = 0;
    967     048E  1683               	bsf	3,5	;RP0=1, select bank3
    968     048F  1703               	bsf	3,6	;RP1=1, select bank3
    969     0490  0188               	clrf	8	;volatile
    970                           
-   971                           ;main.c: 45:     ANSELH = 0;
+   971                           ;main.c: 46:     ANSELH = 0;
    972     0491  0189               	clrf	9	;volatile
    973     0492                     l1659:
    974                           
-   975                           ;main.c: 46:     init_key_matrix();
+   975                           ;main.c: 47:     init_key_matrix();
    976     0492  120A  118A  2229  120A  118A  	fcall	_init_key_matrix
    977     0497                     l1661:
    978                           
-   979                           ;main.c: 47:     lcd_init();
+   979                           ;main.c: 48:     lcd_init();
    980     0497  120A  118A  24FA  120A  118A  	fcall	_lcd_init
    981     049C                     l1663:
    982                           
-   983                           ;main.c: 48:     lcd_gotoxy(0, 0);
+   983                           ;main.c: 49:     lcd_gotoxy(0, 0);
    984     049C  01F7               	clrf	lcd_gotoxy@row
    985     049D  3000               	movlw	0
    986     049E  120A  118A  2325  120A  118A  	fcall	_lcd_gotoxy
    987     04A3                     l1665:
    988                           
-   989                           ;main.c: 49:     lcd_puts("Welcome Embedded");
+   989                           ;main.c: 50:     lcd_puts("Welcome Embedded");
    990     04A3  300B               	movlw	(low ((STR_1-__stringbase)| (0+32768)))& (0+255)
    991     04A4  00F7               	movwf	lcd_puts@string_char
    992     04A5  120A  118A  22C6  120A  118A  	fcall	_lcd_puts
    993     04AA                     l1667:
    994                           
-   995                           ;main.c: 50:     _delay((unsigned long)((1000)*(4000000/4000.0)));
+   995                           ;main.c: 51:     _delay((unsigned long)((1000)*(4000000/4000.0)));
    996     04AA  3006               	movlw	6
    997     04AB  1283               	bcf	3,5	;RP0=0, select bank0
    998     04AC  1303               	bcf	3,6	;RP1=0, select bank0
@@ -1024,25 +1024,25 @@ Microchip MPLAB XC8 C Compiler v3.10 (Free license) build 20250813170317 Og1
   1010     04B7  2CB2               	goto	u1617
   1011     04B8                     l1669:
   1012                           
-  1013                           ;main.c: 51:     lcd_clear();
+  1013                           ;main.c: 52:     lcd_clear();
   1014     04B8  120A  118A  224F  120A  118A  	fcall	_lcd_clear
   1015     04BD                     l1671:
   1016                           
-  1017                           ;main.c: 54:         scan_key_matrix();
+  1017                           ;main.c: 55:         scan_key_matrix();
   1018     04BD  120A  118A  2577  120A  118A  	fcall	_scan_key_matrix
   1019     04C2                     l1673:
   1020                           
-  1021                           ;main.c: 55:         isButtonNumber();
+  1021                           ;main.c: 56:         isButtonNumber();
   1022     04C2  120A  118A  2302  120A  118A  	fcall	_isButtonNumber
   1023     04C7                     l1675:
   1024                           
-  1025                           ;main.c: 56:         lcd_gotoxy(0, 0);
+  1025                           ;main.c: 57:         lcd_gotoxy(0, 0);
   1026     04C7  01F7               	clrf	lcd_gotoxy@row
   1027     04C8  3000               	movlw	0
   1028     04C9  120A  118A  2325  120A  118A  	fcall	_lcd_gotoxy
   1029     04CE                     l1677:
   1030                           
-  1031                           ;main.c: 57:         if ((((unsigned char)((numberValue)-0x20)) < 0x5f))
+  1031                           ;main.c: 58:         if ((((unsigned char)((numberValue)-0x20)) < 0x5f))
   1032     04CE  30E0               	movlw	224
   1033     04CF  1283               	bcf	3,5	;RP0=0, select bank0
   1034     04D0  1303               	bcf	3,6	;RP1=0, select bank0
@@ -1058,7 +1058,7 @@ Microchip MPLAB XC8 C Compiler v3.10 (Free license) build 20250813170317 Og1
   1044     04D9                     u1540:
   1045     04D9                     l1679:
   1046                           
-  1047                           ;main.c: 58:             printf("%c ", numberValue);
+  1047                           ;main.c: 59:             printf("%c ", numberValue);
   1048     04D9  301C               	movlw	(low ((STR_2-__stringbase)| (0+32768)))& (0+255)
   1049     04DA  00D8               	movwf	printf@fmt
   1050     04DB  0845               	movf	_numberValue,w
@@ -1072,7 +1072,7 @@ Microchip MPLAB XC8 C Compiler v3.10 (Free license) build 20250813170317 Og1
   1058     04E7  2CBD               	goto	l1671
   1059     04E8                     l1681:
   1060                           
-  1061                           ;main.c: 60:             printf("%d ", numberValue);
+  1061                           ;main.c: 61:             printf("%d ", numberValue);
   1062     04E8  3020               	movlw	(low ((STR_3-__stringbase)| (0+32768)))& (0+255)
   1063     04E9  00D8               	movwf	printf@fmt
   1064     04EA  0845               	movf	_numberValue,w
@@ -3906,7 +3906,7 @@ STACK                0      0       0      0.0%
 
 
 Microchip Technology PIC Macro Assembler V3.10 build 20250813170317 
-Symbol Table                                                                                   Tue Nov  4 20:20:35 2025
+Symbol Table                                                                                   Thu Nov 13 22:58:41 2025
 
                       pc 0002                       l34 0324                       l96 0576  
                      l99 02B2             ___awdiv@sign 0075                       fsr 0004  
