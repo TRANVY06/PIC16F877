@@ -1,32 +1,24 @@
-/* 
- * File:   main.h
- * Author: ?t ?t
- *
- * Created on November 23, 2025, 10:13 AM
- */
-
-#ifndef MAIN_H
-#define	MAIN_H
-
-#ifdef	__cplusplus
-extern "C" {
-#endif
-    
 #define _XTAL_FREQ 20000000
-#include <htc.h>
-#include <xc.h>
-
-// B? hai dòng __CONFIG c?
-// S? d?ng cú pháp m?i c?a XC8
-#pragma config FOSC = HS        // High Speed Oscillator (Th?ch anh 20MHz)
-#pragma config WDTE = OFF       // Watchdog Timer Disabled
-#pragma config PWRTE = ON       // Power-up Timer Enabled
-#pragma config CP = OFF   
+//#ifndef XC_HEADER_TEMPLATE_H
+#define	XC_HEADER_TEMPLATE_H
+#include <xc.h> // include processor files - each processor file is guarded.  
 
 
-#ifdef	__cplusplus
-}
-#endif
+#pragma config FOSC = HS       // High-Speed Oscillator (dùng th?ch anh ngoài > 4MHz, ? ?ây 24MHz)
 
-#endif	/* MAIN_H */
+#pragma config WDTE = OFF       // Watchdog Timer disabled
 
+#pragma config PWRTE = ON       // Power-up Timer enabled
+
+#pragma config BOREN = ON       // Brown-out Reset enabled
+
+#pragma config LVP = OFF        // Low-Voltage Programming enabled
+
+#pragma config CPD = ON        // Data EEPROM Memory Code Protection off
+
+#pragma config WRT = OFF        // Flash Program Memory Write Protection off
+
+#pragma config CP = ON  
+extern unsigned char a=90;
+extern unsigned char i=40;
+extern unsigned char b=110;

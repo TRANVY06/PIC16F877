@@ -1,0 +1,8 @@
+Added Pin To Net: NetName=GND Pin=H2-2
+Added Pin To Net: NetName=GND Pin=HD1-1
+Added Pin To Net: NetName=GND Pin=JDC1-2
+Added Pin To Net: NetName=GND Pin=JDC1-3
+Change Net Name : Old Net Name=NetH2_1 New Net Name=+12
+Added Member To Class: ClassName=pic Member=Component P1_1 Header 3
+Added Member To Class: ClassName=pic Member=Component P1 Header 3
+Added Rule: Name=Schematic Supply Nets_2

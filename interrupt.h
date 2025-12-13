@@ -6,7 +6,7 @@
 #ifdef	__cplusplus
 
 #endif /* __cplusplus */
-
+unsigned int read_dataPortB;
 void __interrupt() isr(void) {
     if (RBIE == 1 && RBIF == 1) {
 
@@ -32,7 +32,7 @@ void Initialize_interrupt() {
 #endif /* __cplusplus */
 
 #endif	/* XC_HEADER_TEMPLATE_H */
-unsigned int read_dataPortB;
+
 
 
 

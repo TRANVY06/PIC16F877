@@ -1,0 +1,14 @@
+Removed Pin From Net: NetName=PGD Pin=JP5-4
+Removed Pin From Net: NetName=PGC Pin=JP5-5
+Change Net Name : Old Net Name=NetIC2_33 New Net Name=RB0
+Change Net Name : Old Net Name=NetIC2_34 New Net Name=RB1
+Change Net Name : Old Net Name=NetIC2_35 New Net Name=RB2
+Change Net Name : Old Net Name=NetIC2_36 New Net Name=RB3
+Change Net Name : Old Net Name=NetIC2_37 New Net Name=RB4
+Change Net Name : Old Net Name=NetIC2_38 New Net Name=RB5
+Change Net Name : Old Net Name=PGC New Net Name=PGC/RB6
+Change Net Name : Old Net Name=PGD New Net Name=PGD/RB7
+Added Pin To Net: NetName=PGC Pin=JP5-5
+Added Net: Name=PGC
+Added Pin To Net: NetName=PGD Pin=JP5-4
+Added Net: Name=PGD

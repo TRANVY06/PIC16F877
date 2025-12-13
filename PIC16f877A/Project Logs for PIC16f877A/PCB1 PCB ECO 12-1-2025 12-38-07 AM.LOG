@@ -1,0 +1,42 @@
+Removed Pin From Net: NetName=+5 Pin=C1-1
+Removed Pin From Net: NetName=GND Pin=C1-2
+Removed Pin From Net: NetName=GND Pin=C2-1
+Removed Pin From Net: NetName=GND Pin=C3-1
+Removed Pin From Net: NetName=+5 Pin=C3-2
+Removed Pin From Net: NetName=GND Pin=C4-2
+Removed Pin From Net: NetName=NetDB1_3 Pin=DB1-3
+Removed Pin From Net: NetName=GND Pin=DB1-4
+Removed Pin From Net: NetName=GND Pin=IC1-2
+Removed Pin From Net: NetName=+5 Pin=IC1-3
+Removed Member From Class: ClassName=pic Member=C1
+Removed Member From Class: ClassName=pic Member=C2
+Removed Member From Class: ClassName=pic Member=C3
+Removed Member From Class: ClassName=pic Member=C4
+Removed Member From Class: ClassName=pic Member=DB1
+Removed Member From Class: ClassName=pic Member=IC1
+Removed Member From Class: ClassName=pic Member=R2
+Added Component: Designator=H1(XH2.54M-2)
+Add component (AddParameter): Name = "Chung_Loai"; Value = "C?m"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Don_Vi"; Value = "Con"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ghi_Chu"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Kieu_Chan"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ma_Hang"; Value = "MH001283"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ten_Linh_Kien"; Value = "Header 2P XH2.54-2P Ð?c Th?ng"; VariantName = "[No Variations]"
+Added Component: Designator=H2(XH2.54M-2)
+Add component (AddParameter): Name = "Chung_Loai"; Value = "C?m"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Don_Vi"; Value = "Con"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ghi_Chu"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Kieu_Chan"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ma_Hang"; Value = "MH001283"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ten_Linh_Kien"; Value = "Header 2P XH2.54-2P Ð?c Th?ng"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=H1-1
+Added Pin To Net: NetName=+5 Pin=H1-2
+Added Pin To Net: NetName=NetDB1_3 Pin=H2-2
+Change Net Name : Old Net Name=NetDB1_3 New Net Name=NetH2_2
+Added Pin To Net: NetName=NetH2_1 Pin=H2-1
+Added Pin To Net: NetName=NetH2_1 Pin=HD1-2
+Added Pin To Net: NetName=NetH2_1 Pin=JDC1-1
+Added Net: Name=NetH2_1
+Added Member To Class: ClassName=pic Member=Component H1 OUT
+Added Member To Class: ClassName=pic Member=Component H2 IN
+Added Member To Class: ClassName=pic Member=Component P2_1 Header 3

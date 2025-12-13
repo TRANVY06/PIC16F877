@@ -1,0 +1,8 @@
+Add Component: Footprint Not Found LED-3
+Add Component: Footprint Not Found R1/2W
+Add Pin To Net: Unknown Pin: Pin LED2-1
+Add Pin To Net: Unknown Pin: Pin LED2-2
+Add Pin To Net: Unknown Pin: Pin R2-1
+Add Pin To Net: Unknown Pin: Pin R2-2
+Add Class Member: Failed to add class member : Component LED2 LED
+Add Class Member: Failed to add class member : Component R2 100R

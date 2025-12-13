@@ -1,0 +1,14 @@
+Added Component: Designator=HD2(HED4)
+Add component (AddParameter): Name = "Value"; Value = "Header 4"; VariantName = "[No Variations]"
+Added Component: Designator=HD3(HED4)
+Add component (AddParameter): Name = "Value"; Value = "Header 4"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=+12 Pin=HD2-1
+Added Pin To Net: NetName=+12 Pin=HD2-2
+Added Pin To Net: NetName=+12 Pin=HD2-3
+Added Pin To Net: NetName=+12 Pin=HD2-4
+Added Pin To Net: NetName=GND Pin=HD3-1
+Added Pin To Net: NetName=GND Pin=HD3-2
+Added Pin To Net: NetName=GND Pin=HD3-3
+Added Pin To Net: NetName=GND Pin=HD3-4
+Added Member To Class: ClassName=pic Member=Component HD2 Header 4
+Added Member To Class: ClassName=pic Member=Component HD3 Header 4

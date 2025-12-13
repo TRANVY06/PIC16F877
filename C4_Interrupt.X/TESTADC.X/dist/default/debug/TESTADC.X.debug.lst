@@ -1,0 +1,761 @@
+
+
+Microchip MPLAB XC8 Assembler V3.10 build 20250813170317 
+                                                                                               Sun Dec  7 21:01:11 2025
+
+Microchip MPLAB XC8 C Compiler v3.10 (Free license) build 20250813170317 Og1 
+     1                           	processor	16F887
+     2                           	pagewidth 120
+     3                           	opt	flic
+     4                           	psect	cinit,global,class=CODE,space=0,merge=1,delta=2
+     5                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1,noexec
+     6                           	psect	maintext,global,class=CODE,space=0,split=1,delta=2
+     7                           	psect	text1,local,class=CODE,space=0,merge=1,delta=2
+     8                           	psect	text2,local,class=CODE,space=0,merge=1,delta=2
+     9                           	psect	config,global,abs,ovrld,class=CONFIG,space=4,delta=2,noexec
+    10                           	dabs	1,0x7E,2
+    11     0000                     
+    12                           ; Generated 12/10/2023 GMT
+    13                           ; 
+    14                           ; Copyright © 2023, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    15                           ; All rights reserved.
+    16                           ; 
+    17                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    18                           ; 
+    19                           ; Redistribution and use in source and binary forms, with or without modification, are
+    20                           ; permitted provided that the following conditions are met:
+    21                           ; 
+    22                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+      +                          t of
+    23                           ;        conditions and the following disclaimer.
+    24                           ; 
+    25                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+      +                          list
+    26                           ;        of conditions and the following disclaimer in the documentation and/or other
+    27                           ;        materials provided with the distribution. Publication is not required when
+    28                           ;        this file is used in an embedded application.
+    29                           ; 
+    30                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+      +                          is
+    31                           ;        software without specific prior written permission.
+    32                           ; 
+    33                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    34                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    35                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    36                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    37                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    38                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    39                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    40                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    41                           ; 
+    42                           ; 
+    43                           ; Code-generator required, PIC16F887 Definitions
+    44                           ; 
+    45                           ; SFR Addresses
+    46     0004                     fsr             equ	4
+    47     0004                     fsr0            equ	4
+    48     0000                     indf            equ	0
+    49     0000                     indf0           equ	0
+    50     0002                     pc              equ	2
+    51     0002                     pcl             equ	2
+    52     000A                     pclath          equ	10
+    53     0003                     status          equ	3
+    54     0000                     INDF            equ	0	;# 
+    55     0001                     TMR0            equ	1	;# 
+    56     0002                     PCL             equ	2	;# 
+    57     0003                     STATUS          equ	3	;# 
+    58     0004                     FSR             equ	4	;# 
+    59     0005                     PORTA           equ	5	;# 
+    60     0006                     PORTB           equ	6	;# 
+    61     0007                     PORTC           equ	7	;# 
+    62     0008                     PORTD           equ	8	;# 
+    63     0009                     PORTE           equ	9	;# 
+    64     000A                     PCLATH          equ	10	;# 
+    65     000B                     INTCON          equ	11	;# 
+    66     000C                     PIR1            equ	12	;# 
+    67     000D                     PIR2            equ	13	;# 
+    68     000E                     TMR1            equ	14	;# 
+    69     000E                     TMR1L           equ	14	;# 
+    70     000F                     TMR1H           equ	15	;# 
+    71     0010                     T1CON           equ	16	;# 
+    72     0011                     TMR2            equ	17	;# 
+    73     0012                     T2CON           equ	18	;# 
+    74     0013                     SSPBUF          equ	19	;# 
+    75     0014                     SSPCON          equ	20	;# 
+    76     0015                     CCPR1           equ	21	;# 
+    77     0015                     CCPR1L          equ	21	;# 
+    78     0016                     CCPR1H          equ	22	;# 
+    79     0017                     CCP1CON         equ	23	;# 
+    80     0018                     RCSTA           equ	24	;# 
+    81     0019                     TXREG           equ	25	;# 
+    82     001A                     RCREG           equ	26	;# 
+    83     001B                     CCPR2           equ	27	;# 
+    84     001B                     CCPR2L          equ	27	;# 
+    85     001C                     CCPR2H          equ	28	;# 
+    86     001D                     CCP2CON         equ	29	;# 
+    87     001E                     ADRESH          equ	30	;# 
+    88     001F                     ADCON0          equ	31	;# 
+    89     0081                     OPTION_REG      equ	129	;# 
+    90     0085                     TRISA           equ	133	;# 
+    91     0086                     TRISB           equ	134	;# 
+    92     0087                     TRISC           equ	135	;# 
+    93     0088                     TRISD           equ	136	;# 
+    94     0089                     TRISE           equ	137	;# 
+    95     008C                     PIE1            equ	140	;# 
+    96     008D                     PIE2            equ	141	;# 
+    97     008E                     PCON            equ	142	;# 
+    98     008F                     OSCCON          equ	143	;# 
+    99     0090                     OSCTUNE         equ	144	;# 
+   100     0091                     SSPCON2         equ	145	;# 
+   101     0092                     PR2             equ	146	;# 
+   102     0093                     SSPADD          equ	147	;# 
+   103     0093                     SSPMSK          equ	147	;# 
+   104     0093                     MSK             equ	147	;# 
+   105     0094                     SSPSTAT         equ	148	;# 
+   106     0095                     WPUB            equ	149	;# 
+   107     0096                     IOCB            equ	150	;# 
+   108     0097                     VRCON           equ	151	;# 
+   109     0098                     TXSTA           equ	152	;# 
+   110     0099                     SPBRG           equ	153	;# 
+   111     009A                     SPBRGH          equ	154	;# 
+   112     009B                     PWM1CON         equ	155	;# 
+   113     009C                     ECCPAS          equ	156	;# 
+   114     009D                     PSTRCON         equ	157	;# 
+   115     009E                     ADRESL          equ	158	;# 
+   116     009F                     ADCON1          equ	159	;# 
+   117     0105                     WDTCON          equ	261	;# 
+   118     0107                     CM1CON0         equ	263	;# 
+   119     0108                     CM2CON0         equ	264	;# 
+   120     0109                     CM2CON1         equ	265	;# 
+   121     010C                     EEDATA          equ	268	;# 
+   122     010C                     EEDAT           equ	268	;# 
+   123     010D                     EEADR           equ	269	;# 
+   124     010E                     EEDATH          equ	270	;# 
+   125     010F                     EEADRH          equ	271	;# 
+   126     0185                     SRCON           equ	389	;# 
+   127     0187                     BAUDCTL         equ	391	;# 
+   128     0188                     ANSEL           equ	392	;# 
+   129     0189                     ANSELH          equ	393	;# 
+   130     018C                     EECON1          equ	396	;# 
+   131     018D                     EECON2          equ	397	;# 
+   132     0000                     INDF            equ	0	;# 
+   133     0001                     TMR0            equ	1	;# 
+   134     0002                     PCL             equ	2	;# 
+   135     0003                     STATUS          equ	3	;# 
+   136     0004                     FSR             equ	4	;# 
+   137     0005                     PORTA           equ	5	;# 
+   138     0006                     PORTB           equ	6	;# 
+   139     0007                     PORTC           equ	7	;# 
+   140     0008                     PORTD           equ	8	;# 
+   141     0009                     PORTE           equ	9	;# 
+   142     000A                     PCLATH          equ	10	;# 
+   143     000B                     INTCON          equ	11	;# 
+   144     000C                     PIR1            equ	12	;# 
+   145     000D                     PIR2            equ	13	;# 
+   146     000E                     TMR1            equ	14	;# 
+   147     000E                     TMR1L           equ	14	;# 
+   148     000F                     TMR1H           equ	15	;# 
+   149     0010                     T1CON           equ	16	;# 
+   150     0011                     TMR2            equ	17	;# 
+   151     0012                     T2CON           equ	18	;# 
+   152     0013                     SSPBUF          equ	19	;# 
+   153     0014                     SSPCON          equ	20	;# 
+   154     0015                     CCPR1           equ	21	;# 
+   155     0015                     CCPR1L          equ	21	;# 
+   156     0016                     CCPR1H          equ	22	;# 
+   157     0017                     CCP1CON         equ	23	;# 
+   158     0018                     RCSTA           equ	24	;# 
+   159     0019                     TXREG           equ	25	;# 
+   160     001A                     RCREG           equ	26	;# 
+   161     001B                     CCPR2           equ	27	;# 
+   162     001B                     CCPR2L          equ	27	;# 
+   163     001C                     CCPR2H          equ	28	;# 
+   164     001D                     CCP2CON         equ	29	;# 
+   165     001E                     ADRESH          equ	30	;# 
+   166     001F                     ADCON0          equ	31	;# 
+   167     0081                     OPTION_REG      equ	129	;# 
+   168     0085                     TRISA           equ	133	;# 
+   169     0086                     TRISB           equ	134	;# 
+   170     0087                     TRISC           equ	135	;# 
+   171     0088                     TRISD           equ	136	;# 
+   172     0089                     TRISE           equ	137	;# 
+   173     008C                     PIE1            equ	140	;# 
+   174     008D                     PIE2            equ	141	;# 
+   175     008E                     PCON            equ	142	;# 
+   176     008F                     OSCCON          equ	143	;# 
+   177     0090                     OSCTUNE         equ	144	;# 
+   178     0091                     SSPCON2         equ	145	;# 
+   179     0092                     PR2             equ	146	;# 
+   180     0093                     SSPADD          equ	147	;# 
+   181     0093                     SSPMSK          equ	147	;# 
+   182     0093                     MSK             equ	147	;# 
+   183     0094                     SSPSTAT         equ	148	;# 
+   184     0095                     WPUB            equ	149	;# 
+   185     0096                     IOCB            equ	150	;# 
+   186     0097                     VRCON           equ	151	;# 
+   187     0098                     TXSTA           equ	152	;# 
+   188     0099                     SPBRG           equ	153	;# 
+   189     009A                     SPBRGH          equ	154	;# 
+   190     009B                     PWM1CON         equ	155	;# 
+   191     009C                     ECCPAS          equ	156	;# 
+   192     009D                     PSTRCON         equ	157	;# 
+   193     009E                     ADRESL          equ	158	;# 
+   194     009F                     ADCON1          equ	159	;# 
+   195     0105                     WDTCON          equ	261	;# 
+   196     0107                     CM1CON0         equ	263	;# 
+   197     0108                     CM2CON0         equ	264	;# 
+   198     0109                     CM2CON1         equ	265	;# 
+   199     010C                     EEDATA          equ	268	;# 
+   200     010C                     EEDAT           equ	268	;# 
+   201     010D                     EEADR           equ	269	;# 
+   202     010E                     EEDATH          equ	270	;# 
+   203     010F                     EEADRH          equ	271	;# 
+   204     0185                     SRCON           equ	389	;# 
+   205     0187                     BAUDCTL         equ	391	;# 
+   206     0188                     ANSEL           equ	392	;# 
+   207     0189                     ANSELH          equ	393	;# 
+   208     018C                     EECON1          equ	396	;# 
+   209     018D                     EECON2          equ	397	;# 
+   210     0000                     INDF            equ	0	;# 
+   211     0001                     TMR0            equ	1	;# 
+   212     0002                     PCL             equ	2	;# 
+   213     0003                     STATUS          equ	3	;# 
+   214     0004                     FSR             equ	4	;# 
+   215     0005                     PORTA           equ	5	;# 
+   216     0006                     PORTB           equ	6	;# 
+   217     0007                     PORTC           equ	7	;# 
+   218     0008                     PORTD           equ	8	;# 
+   219     0009                     PORTE           equ	9	;# 
+   220     000A                     PCLATH          equ	10	;# 
+   221     000B                     INTCON          equ	11	;# 
+   222     000C                     PIR1            equ	12	;# 
+   223     000D                     PIR2            equ	13	;# 
+   224     000E                     TMR1            equ	14	;# 
+   225     000E                     TMR1L           equ	14	;# 
+   226     000F                     TMR1H           equ	15	;# 
+   227     0010                     T1CON           equ	16	;# 
+   228     0011                     TMR2            equ	17	;# 
+   229     0012                     T2CON           equ	18	;# 
+   230     0013                     SSPBUF          equ	19	;# 
+   231     0014                     SSPCON          equ	20	;# 
+   232     0015                     CCPR1           equ	21	;# 
+   233     0015                     CCPR1L          equ	21	;# 
+   234     0016                     CCPR1H          equ	22	;# 
+   235     0017                     CCP1CON         equ	23	;# 
+   236     0018                     RCSTA           equ	24	;# 
+   237     0019                     TXREG           equ	25	;# 
+   238     001A                     RCREG           equ	26	;# 
+   239     001B                     CCPR2           equ	27	;# 
+   240     001B                     CCPR2L          equ	27	;# 
+   241     001C                     CCPR2H          equ	28	;# 
+   242     001D                     CCP2CON         equ	29	;# 
+   243     001E                     ADRESH          equ	30	;# 
+   244     001F                     ADCON0          equ	31	;# 
+   245     0081                     OPTION_REG      equ	129	;# 
+   246     0085                     TRISA           equ	133	;# 
+   247     0086                     TRISB           equ	134	;# 
+   248     0087                     TRISC           equ	135	;# 
+   249     0088                     TRISD           equ	136	;# 
+   250     0089                     TRISE           equ	137	;# 
+   251     008C                     PIE1            equ	140	;# 
+   252     008D                     PIE2            equ	141	;# 
+   253     008E                     PCON            equ	142	;# 
+   254     008F                     OSCCON          equ	143	;# 
+   255     0090                     OSCTUNE         equ	144	;# 
+   256     0091                     SSPCON2         equ	145	;# 
+   257     0092                     PR2             equ	146	;# 
+   258     0093                     SSPADD          equ	147	;# 
+   259     0093                     SSPMSK          equ	147	;# 
+   260     0093                     MSK             equ	147	;# 
+   261     0094                     SSPSTAT         equ	148	;# 
+   262     0095                     WPUB            equ	149	;# 
+   263     0096                     IOCB            equ	150	;# 
+   264     0097                     VRCON           equ	151	;# 
+   265     0098                     TXSTA           equ	152	;# 
+   266     0099                     SPBRG           equ	153	;# 
+   267     009A                     SPBRGH          equ	154	;# 
+   268     009B                     PWM1CON         equ	155	;# 
+   269     009C                     ECCPAS          equ	156	;# 
+   270     009D                     PSTRCON         equ	157	;# 
+   271     009E                     ADRESL          equ	158	;# 
+   272     009F                     ADCON1          equ	159	;# 
+   273     0105                     WDTCON          equ	261	;# 
+   274     0107                     CM1CON0         equ	263	;# 
+   275     0108                     CM2CON0         equ	264	;# 
+   276     0109                     CM2CON1         equ	265	;# 
+   277     010C                     EEDATA          equ	268	;# 
+   278     010C                     EEDAT           equ	268	;# 
+   279     010D                     EEADR           equ	269	;# 
+   280     010E                     EEDATH          equ	270	;# 
+   281     010F                     EEADRH          equ	271	;# 
+   282     0185                     SRCON           equ	389	;# 
+   283     0187                     BAUDCTL         equ	391	;# 
+   284     0188                     ANSEL           equ	392	;# 
+   285     0189                     ANSELH          equ	393	;# 
+   286     018C                     EECON1          equ	396	;# 
+   287     018D                     EECON2          equ	397	;# 
+   288     001E                     _ADRESH         set	30
+   289     001F                     _ADCON0         set	31
+   290     0006                     _PORTB          set	6
+   291     00F9                     _GO_nDONE       set	249
+   292     009E                     _ADRESL         set	158
+   293     009F                     _ADCON1         set	159
+   294     0086                     _TRISB          set	134
+   295                           
+   296                           	psect	cinit
+   297     07FC                     start_initialization:	
+   298                           ; #config settings
+   299                           
+   300     07FC                     __initialization:
+   301     07FC                     end_of_initialization:	
+   302                           ;End of C runtime variable initialization code
+   303                           
+   304     07FC                     __end_of__initialization:
+   305     07FC  0183               	clrf	3
+   306     07FD  120A  118A  2FA6   	ljmp	_main	;jump to C main() function
+   307                           
+   308                           	psect	cstackCOMMON
+   309     0070                     __pcstackCOMMON:
+   310     0070                     ?_ADC_Init:
+   311     0070                     ?_main:	
+   312                           ; 1 bytes @ 0x0
+   313                           
+   314     0070                     ?_ADC_Read:	
+   315                           ; 1 bytes @ 0x0
+   316                           
+   317     0070                     ??_ADC_Init:	
+   318                           ; 2 bytes @ 0x0
+   319                           
+   320                           
+   321                           ; 1 bytes @ 0x0
+   322     0070                     	ds	2
+   323     0072                     ??_ADC_Read:
+   324                           
+   325                           ; 1 bytes @ 0x2
+   326     0072                     	ds	2
+   327     0074                     ADC_Read@channel:
+   328                           
+   329                           ; 1 bytes @ 0x4
+   330     0074                     	ds	1
+   331     0075                     ??_main:
+   332                           
+   333                           	psect	maintext
+   334     07A6                     __pmaintext:	
+   335                           ; 1 bytes @ 0x5
+   336 ;;
+   337 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   338 ;;
+   339 ;; *************** function _main *****************
+   340 ;; Defined at:
+   341 ;;		line 11 in file "main.c"
+   342 ;; Parameters:    Size  Location     Type
+   343 ;;		None
+   344 ;; Auto vars:     Size  Location     Type
+   345 ;;		None
+   346 ;; Return value:  Size  Location     Type
+   347 ;;                  1    wreg      void 
+   348 ;; Registers used:
+   349 ;;		wreg, status,2, status,0, pclath, cstack
+   350 ;; Tracked objects:
+   351 ;;		On entry : B00/0
+   352 ;;		On exit  : 0/0
+   353 ;;		Unchanged: 0/0
+   354 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   355 ;;      Params:         0       0       0       0       0
+   356 ;;      Locals:         0       0       0       0       0
+   357 ;;      Temps:          0       0       0       0       0
+   358 ;;      Totals:         0       0       0       0       0
+   359 ;;Total ram usage:        0 bytes
+   360 ;; Hardware stack levels required when called: 1
+   361 ;; This function calls:
+   362 ;;		_ADC_Init
+   363 ;;		_ADC_Read
+   364 ;; This function is called by:
+   365 ;;		Startup code after reset
+   366 ;; This function uses a non-reentrant model
+   367 ;;
+   368                           
+   369     07A6                     _main:	
+   370                           ;psect for function _main
+   371                           
+   372     07A6                     l630:	
+   373                           ;incstack = 0
+   374                           ; Regs used in _main: [wreg+status,2+status,0+pclath+cstack]
+   375                           
+   376                           
+   377                           ;main.c: 12:     ADC_Init();
+   378     07A6  120A  118A  279D  120A  118A  	fcall	_ADC_Init
+   379     07AB                     l632:
+   380                           
+   381                           ;main.c: 13:     PORTB = 0X00;
+   382     07AB  1283               	bcf	3,5	;RP0=0, select bank0
+   383     07AC  1303               	bcf	3,6	;RP1=0, select bank0
+   384     07AD  0186               	clrf	6	;volatile
+   385     07AE                     l634:
+   386                           
+   387                           ;main.c: 14:     TRISB = 0X00;
+   388     07AE  1683               	bsf	3,5	;RP0=1, select bank1
+   389     07AF  1303               	bcf	3,6	;RP1=0, select bank1
+   390     07B0  0186               	clrf	6	;volatile
+   391     07B1                     l636:
+   392                           
+   393                           ;main.c: 16:         if (ADC_Read(0) > 500) {
+   394     07B1  3000               	movlw	0
+   395     07B2  120A  118A  27CC  120A  118A  	fcall	_ADC_Read
+   396     07B7  3001               	movlw	1
+   397     07B8  0271               	subwf	?_ADC_Read+1,w
+   398     07B9  30F5               	movlw	245
+   399     07BA  1903               	skipnz
+   400     07BB  0270               	subwf	?_ADC_Read,w
+   401     07BC  1C03               	skipc
+   402     07BD  2FBF               	goto	u81
+   403     07BE  2FC0               	goto	u80
+   404     07BF                     u81:
+   405     07BF  2FC5               	goto	l640
+   406     07C0                     u80:
+   407     07C0                     l638:
+   408                           
+   409                           ;main.c: 17:             PORTB = 0xff;
+   410     07C0  30FF               	movlw	255
+   411     07C1  1283               	bcf	3,5	;RP0=0, select bank0
+   412     07C2  1303               	bcf	3,6	;RP1=0, select bank0
+   413     07C3  0086               	movwf	6	;volatile
+   414                           
+   415                           ;main.c: 18:         } else {
+   416     07C4  2FB1               	goto	l636
+   417     07C5                     l640:
+   418                           
+   419                           ;main.c: 19:             PORTB = 0x00;
+   420     07C5  1283               	bcf	3,5	;RP0=0, select bank0
+   421     07C6  1303               	bcf	3,6	;RP1=0, select bank0
+   422     07C7  0186               	clrf	6	;volatile
+   423     07C8  2FB1               	goto	l636
+   424     07C9  120A  118A  2800   	ljmp	start
+   425     07CC                     __end_of_main:
+   426                           
+   427                           	psect	text1
+   428     07CC                     __ptext1:	
+   429 ;; *************** function _ADC_Read *****************
+   430 ;; Defined at:
+   431 ;;		line 9 in file "ADC.c"
+   432 ;; Parameters:    Size  Location     Type
+   433 ;;  channel         1    wreg     unsigned char 
+   434 ;; Auto vars:     Size  Location     Type
+   435 ;;  channel         1    4[COMMON] unsigned char 
+   436 ;; Return value:  Size  Location     Type
+   437 ;;                  2    0[COMMON] unsigned int 
+   438 ;; Registers used:
+   439 ;;		wreg, status,2, status,0
+   440 ;; Tracked objects:
+   441 ;;		On entry : 0/0
+   442 ;;		On exit  : 0/0
+   443 ;;		Unchanged: 0/0
+   444 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   445 ;;      Params:         2       0       0       0       0
+   446 ;;      Locals:         1       0       0       0       0
+   447 ;;      Temps:          2       0       0       0       0
+   448 ;;      Totals:         5       0       0       0       0
+   449 ;;Total ram usage:        5 bytes
+   450 ;; Hardware stack levels used: 1
+   451 ;; This function calls:
+   452 ;;		Nothing
+   453 ;; This function is called by:
+   454 ;;		_main
+   455 ;; This function uses a non-reentrant model
+   456 ;;
+   457                           
+   458     07CC                     _ADC_Read:	
+   459                           ;psect for function _ADC_Read
+   460                           
+   461                           
+   462                           ;incstack = 0
+   463                           ; Regs used in _ADC_Read: [wreg+status,2+status,0]
+   464                           ;ADC_Read@channel stored from wreg
+   465     07CC  00F4               	movwf	ADC_Read@channel
+   466     07CD                     l614:
+   467                           
+   468                           ;ADC.c: 9: unsigned int ADC_Read(unsigned char channel);ADC.c: 10: {;ADC.c: 11:    if(ch
+      +                          annel > 7)
+   469     07CD  3008               	movlw	8
+   470     07CE  0274               	subwf	ADC_Read@channel,w
+   471     07CF  1C03               	skipc
+   472     07D0  2FD2               	goto	u51
+   473     07D1  2FD3               	goto	u50
+   474     07D2                     u51:
+   475     07D2  2FD6               	goto	l620
+   476     07D3                     u50:
+   477     07D3                     l616:
+   478                           
+   479                           ;ADC.c: 12:      return 0;
+   480     07D3  01F0               	clrf	?_ADC_Read
+   481     07D4  01F1               	clrf	?_ADC_Read+1
+   482     07D5  2FFB               	goto	l37
+   483     07D6                     l620:
+   484                           
+   485                           ;ADC.c: 14:    ADCON0 &= 0xC5;
+   486     07D6  30C5               	movlw	197
+   487     07D7  1283               	bcf	3,5	;RP0=0, select bank0
+   488     07D8  1303               	bcf	3,6	;RP1=0, select bank0
+   489     07D9  059F               	andwf	31,f	;volatile
+   490                           
+   491                           ;ADC.c: 15:    ADCON0 |= channel<<3;
+   492     07DA  0874               	movf	ADC_Read@channel,w	;volatile
+   493     07DB  00F2               	movwf	??_ADC_Read
+   494     07DC  3002               	movlw	2
+   495     07DD                     u65:
+   496     07DD  1003               	clrc
+   497     07DE  0DF2               	rlf	??_ADC_Read,f
+   498     07DF  3EFF               	addlw	-1
+   499     07E0  1D03               	skipz
+   500     07E1  2FDD               	goto	u65
+   501     07E2  1003               	clrc
+   502     07E3  0D72               	rlf	??_ADC_Read,w
+   503     07E4  049F               	iorwf	31,f	;volatile
+   504     07E5                     l622:
+   505                           
+   506                           ;ADC.c: 16:    _delay((unsigned long)((2)*(20000000/4000.0)));
+   507     07E5  300D               	movlw	13
+   508     07E6  00F3               	movwf	??_ADC_Read+1
+   509     07E7  30FB               	movlw	251
+   510     07E8  00F2               	movwf	??_ADC_Read
+   511     07E9                     u97:
+   512     07E9  0BF2               	decfsz	??_ADC_Read,f
+   513     07EA  2FE9               	goto	u97
+   514     07EB  0BF3               	decfsz	??_ADC_Read+1,f
+   515     07EC  2FE9               	goto	u97
+   516     07ED  2FEE               	nop2
+   517     07EE                     l624:
+   518                           
+   519                           ;ADC.c: 17:    GO_nDONE = 1;
+   520     07EE  1283               	bcf	3,5	;RP0=0, select bank0
+   521     07EF  1303               	bcf	3,6	;RP1=0, select bank0
+   522     07F0  149F               	bsf	31,1	;volatile
+   523     07F1                     l38:	
+   524                           ;ADC.c: 18:    while(GO_nDONE);
+   525                           
+   526     07F1  189F               	btfsc	31,1	;volatile
+   527     07F2  2FF4               	goto	u71
+   528     07F3  2FF5               	goto	u70
+   529     07F4                     u71:
+   530     07F4  2FF1               	goto	l38
+   531     07F5                     u70:
+   532     07F5                     l626:
+   533                           
+   534                           ;ADC.c: 19:    return ((ADRESH<<8)+ADRESL);
+   535     07F5  081E               	movf	30,w	;volatile
+   536     07F6  00F1               	movwf	?_ADC_Read+1
+   537     07F7  1683               	bsf	3,5	;RP0=1, select bank1
+   538     07F8  1303               	bcf	3,6	;RP1=0, select bank1
+   539     07F9  081E               	movf	30,w	;volatile
+   540     07FA  00F0               	movwf	?_ADC_Read
+   541     07FB                     l37:
+   542     07FB  0008               	return
+   543     07FC                     __end_of_ADC_Read:
+   544                           
+   545                           	psect	text2
+   546     079D                     __ptext2:	
+   547 ;; *************** function _ADC_Init *****************
+   548 ;; Defined at:
+   549 ;;		line 3 in file "ADC.c"
+   550 ;; Parameters:    Size  Location     Type
+   551 ;;		None
+   552 ;; Auto vars:     Size  Location     Type
+   553 ;;		None
+   554 ;; Return value:  Size  Location     Type
+   555 ;;                  1    wreg      void 
+   556 ;; Registers used:
+   557 ;;		None
+   558 ;; Tracked objects:
+   559 ;;		On entry : 0/0
+   560 ;;		On exit  : 0/0
+   561 ;;		Unchanged: 0/0
+   562 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   563 ;;      Params:         0       0       0       0       0
+   564 ;;      Locals:         0       0       0       0       0
+   565 ;;      Temps:          0       0       0       0       0
+   566 ;;      Totals:         0       0       0       0       0
+   567 ;;Total ram usage:        0 bytes
+   568 ;; Hardware stack levels used: 1
+   569 ;; This function calls:
+   570 ;;		Nothing
+   571 ;; This function is called by:
+   572 ;;		_main
+   573 ;; This function uses a non-reentrant model
+   574 ;;
+   575                           
+   576     079D                     _ADC_Init:	
+   577                           ;psect for function _ADC_Init
+   578                           
+   579     079D                     l584:	
+   580                           ;incstack = 0
+   581                           ; Regs used in _ADC_Init: []
+   582                           
+   583                           
+   584                           ;ADC.c: 5:    ADCON0 = 0x41;
+   585     079D  3041               	movlw	65
+   586     079E  1283               	bcf	3,5	;RP0=0, select bank0
+   587     079F  1303               	bcf	3,6	;RP1=0, select bank0
+   588     07A0  009F               	movwf	31	;volatile
+   589                           
+   590                           ;ADC.c: 6:    ADCON1 = 0xC0;
+   591     07A1  30C0               	movlw	192
+   592     07A2  1683               	bsf	3,5	;RP0=1, select bank1
+   593     07A3  1303               	bcf	3,6	;RP1=0, select bank1
+   594     07A4  009F               	movwf	31	;volatile
+   595     07A5                     l33:
+   596     07A5  0008               	return
+   597     07A6                     __end_of_ADC_Init:
+   598     0002                     ___latbits      equ	2
+   599     007E                     btemp           set	126	;btemp
+   600     007E                     btemp0          set	126
+   601     007F                     btemp1          set	127
+   602     007E                     wtemp0          set	126
+   603     007F                     wtemp0a         set	127
+   604     007F                     ttemp0a         set	127
+   605     0080                     ltemp0a         set	128
+   606                           
+   607                           	psect	config
+   608                           
+   609                           ;Config register CONFIG1 @ 0x2007
+   610                           ;	Oscillator Selection bits
+   611                           ;	FOSC = HS, HS oscillator: High-speed crystal/resonator on RA6/OSC2/CLKOUT and RA7/OSC1
+      +                          /CLKIN
+   612                           ;	Watchdog Timer Enable bit
+   613                           ;	WDTE = OFF, WDT disabled and can be enabled by SWDTEN bit of the WDTCON register
+   614                           ;	Power-up Timer Enable bit
+   615                           ;	PWRTE = ON, PWRT enabled
+   616                           ;	RE3/MCLR pin function select bit
+   617                           ;	MCLRE = 0x1, unprogrammed default
+   618                           ;	Code Protection bit
+   619                           ;	CP = ON, Program memory code protection is enabled
+   620                           ;	Data Code Protection bit
+   621                           ;	CPD = ON, Data memory code protection is enabled
+   622                           ;	Brown Out Reset Selection bits
+   623                           ;	BOREN = ON, BOR enabled
+   624                           ;	Internal External Switchover bit
+   625                           ;	IESO = 0x1, unprogrammed default
+   626                           ;	Fail-Safe Clock Monitor Enabled bit
+   627                           ;	FCMEN = 0x1, unprogrammed default
+   628                           ;	Low Voltage Programming Enable bit
+   629                           ;	LVP = OFF, RB3 pin has digital I/O, HV on MCLR must be used for programming
+   630                           ;	In-Circuit Debugger Mode bit
+   631                           ;	DEBUG = 0x1, unprogrammed default
+   632     2007                     	org	8199
+   633     2007  2F22               	dw	12066
+   634                           
+   635                           ;Config register CONFIG2 @ 0x2008
+   636                           ;	Brown-out Reset Selection bit
+   637                           ;	BOR4V = 0x1, unprogrammed default
+   638                           ;	Flash Program Memory Self Write Enable bits
+   639                           ;	WRT = OFF, Write protection off
+   640     2008                     	org	8200
+   641     2008  3FFF               	dw	16383
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         0
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMMON           14      5       5
+    BANK0            80      0       0
+    BANK1            80      0       0
+    BANK3            96      0       0
+    BANK2            96      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMMON
+
+    _main->_ADC_Read
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 0     0      0      58
+                           _ADC_Init
+                           _ADC_Read
+ ---------------------------------------------------------------------------------
+ (1) _ADC_Read                                             5     3      2      58
+                                              0 COMMON     5     3      2
+ ---------------------------------------------------------------------------------
+ (1) _ADC_Init                                             0     0      0       0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 1
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _ADC_Init
+   _ADC_Read
+
+Address spaces:
+Name               Size   Autos  Total    Usage
+BITCOMMON           14      0       0      0.0%
+BITBANK0            80      0       0      0.0%
+BITBANK1            80      0       0      0.0%
+BITBANK3            96      0       0      0.0%
+BITBANK2            96      0       0      0.0%
+COMMON              14      5       5     35.7%
+BANK0               80      0       0      0.0%
+BANK1               80      0       0      0.0%
+BANK3               96      0       0      0.0%
+BANK2               96      0       0      0.0%
+STACK                0      0       0      0.0%
+DATA                 0      0       5      0.0%
+
+
+Microchip Technology PIC Macro Assembler V3.10 build 20250813170317 
+Symbol Table                                                                                   Sun Dec  7 21:01:11 2025
+
+                     l33 07A5                       l37 07FB                       l38 07F1  
+                     u50 07D3                       u51 07D2                       u70 07F5  
+                     u71 07F4                       u80 07C0                       u65 07DD  
+                     u81 07BF                       u97 07E9                      l620 07D6  
+                    l622 07E5                      l614 07CD                      l630 07A6  
+                    l624 07EE                      l616 07D3                      l640 07C5  
+                    l632 07AB                      l626 07F5                      l634 07AE  
+                    l636 07B1                      l638 07C0                      l584 079D  
+                   _main 07A6                     btemp 007E         __end_of_ADC_Init 07A6  
+       __end_of_ADC_Read 07FC                     start 0000                    ?_main 0070  
+                  _PORTB 0006                    _TRISB 0086                    btemp0 007E  
+                  btemp1 007F                    status 0003                    wtemp0 007E  
+        __initialization 07FC             __end_of_main 07CC                   ??_main 0075  
+                 _ADCON0 001F                   _ADCON1 009F                   _ADRESH 001E  
+                 _ADRESL 009E          ADC_Read@channel 0074                   ltemp0a 0080  
+              ?_ADC_Init 0070                ?_ADC_Read 0070                   ttemp0a 007F  
+                 wtemp0a 007F  __end_of__initialization 07FC           __pcstackCOMMON 0070  
+             ??_ADC_Init 0070               ??_ADC_Read 0072               __pmaintext 07A6  
+                __ptext1 07CC                  __ptext2 079D     end_of_initialization 07FC  
+    start_initialization 07FC                ___latbits 0002                 _ADC_Init 079D  
+               _ADC_Read 07CC                 _GO_nDONE 00F9  

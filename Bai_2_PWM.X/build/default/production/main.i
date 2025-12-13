@@ -15,11 +15,6 @@
 
 
 # 1 "./main.h" 1
-# 16 "./main.h"
-# 1 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include/htc.h" 1 3
-
-
-
 
 
 
@@ -229,7 +224,27 @@ extern __attribute__((nonreentrant)) void _delaywdt(uint32_t);
 
 
 # 1 "C:/Program Files/Microchip/MPLABX/v6.25/packs/Microchip/PIC16Fxxx_DFP/1.6.156/xc8\\pic\\include/pic.h" 1 3
-# 13 "C:/Program Files/Microchip/MPLABX/v6.25/packs/Microchip/PIC16Fxxx_DFP/1.6.156/xc8\\pic\\include/pic.h" 3
+
+
+
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include/htc.h" 1 3
+
+
+
+
+
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include/xc.h" 1 3
+# 8 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include/htc.h" 2 3
+# 6 "C:/Program Files/Microchip/MPLABX/v6.25/packs/Microchip/PIC16Fxxx_DFP/1.6.156/xc8\\pic\\include/pic.h" 2 3
+
+
+
+
+
+
+
 # 1 "C:/Program Files/Microchip/MPLABX/v6.25/packs/Microchip/PIC16Fxxx_DFP/1.6.156/xc8\\pic\\include/pic_chip_select.h" 1 3
 # 723 "C:/Program Files/Microchip/MPLABX/v6.25/packs/Microchip/PIC16Fxxx_DFP/1.6.156/xc8\\pic\\include/pic_chip_select.h" 3
 # 1 "C:/Program Files/Microchip/MPLABX/v6.25/packs/Microchip/PIC16Fxxx_DFP/1.6.156/xc8\\pic\\include\\proc/pic16f887.h" 1 3
@@ -2662,26 +2677,35 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 29 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include/xc.h" 2 3
-# 8 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include/htc.h" 2 3
-# 17 "./main.h" 2
-
-
+# 5 "./main.h" 2
 
 
 #pragma config FOSC = HS
-#pragma config WDTE = OFF
-#pragma config PWRTE = ON
-#pragma config CP = OFF
-# 9 "main.c" 2
 
-unsigned char i;
+#pragma config WDTE = OFF
+
+#pragma config PWRTE = ON
+
+#pragma config BOREN = ON
+
+#pragma config LVP = OFF
+
+#pragma config CPD = ON
+
+#pragma config WRT = OFF
+
+#pragma config CP = ON
+extern unsigned char a=90;
+extern unsigned char i=40;
+extern unsigned char b=110;
+# 9 "main.c" 2
 
 void setup_pwm() {
     TMR2 = 0x00;
     PR2 = 199;
-    CCPR1L = i;
+    CCPR1L = 0;
     CCP1CON = 0;
-    CCPR2L = i;
+    CCPR2L = 0;
     CCP2CON = 0;
     TRISC1 = 0;
     TRISC2 = 0;
@@ -2690,27 +2714,87 @@ void setup_pwm() {
     TMR2ON = 1;
 }
 
+void DITHANG() {
+    PORTD = 0xFF;
+    CCPR1L = i;
+    CCP1CON = 0x0C;
+    CCPR2L = 0;
+    CCP2CON = 0x00;
+}
+
+void LUI() {
+    CCPR2L = i;
+    CCP2CON = 0x0C;
+    CCPR1L = 0;
+    CCP1CON = 0x00;
+    _delay((unsigned long)((50)*(20000000/4000.0)));
+}
+
 void main(void) {
 
+    ANSEL = 0;
+    ANSELH = 0;
     ADCON1 = 0;
     TRISD = 0x00;
     PORTD = 0x0F;
     setup_pwm();
-    TRISB1 = 0xFF;
+    TRISB = 0xFF;
     TRISE0 = 0;
     RE0 = 1;
-
+    PORTB = 0x00;
     while (1) {
+        if (RB1 == 1 && RB2 == 1) {
+            DITHANG();
 
+        } else if (RB1 == 1 && RB0 == 1) {
 
-                        i = 200;
-            PORTD = 0x3C;
+            PORTD = 0x02;
+            CCPR1L = a;
+            CCP1CON = 0x0C;
+            CCPR2L = 0;
+            CCP2CON = 0x00;
+        } else if (RB3 == 1 && RB2 == 1) {
 
+            PORTD = 0x01;
+            CCPR1L = a;
+            CCP1CON = 0x0C;
+            CCPR2L = 0;
+            CCP2CON = 0x00;
+        } else if (RB0 == 1) {
 
-            CCPR2L = i;
-            CCP2CON = 0x0C;
-            _delay((unsigned long)((100)*(20000000/4000.0)));
-# 57 "main.c"
+            PORTD = 0x02;
+            CCPR1L = b;
+            CCP1CON = 0x0C;
+            CCPR2L = 0;
+            CCP2CON = 0x00;
+        } else if (RB3 == 1) {
+
+            PORTD = 0x01;
+            CCPR1L = b;
+            CCP1CON = 0x0C;
+            CCPR2L = 0;
+            CCP2CON = 0x00;
+        } else if (RB2 == 1) {
+            PORTD = 0x01;
+            CCPR1L = i;
+            CCP1CON = 0x0C;
+            CCPR2L = 0;
+            CCP2CON = 0x00;
+        } else if (RB1 == 1) {
+            PORTD = 0x01;
+            CCPR1L = i;
+            CCP1CON = 0x0C;
+            CCPR2L = 0;
+            CCP2CON = 0x00;
+        } else {
+
+            CCPR1L = 0;
+            CCP1CON = 0x00;
+            CCPR2L = 0;
+            CCP2CON = 0x00;
+
+        }
+# 121 "main.c"
     }
 
 

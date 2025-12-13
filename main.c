@@ -4,15 +4,27 @@
  *
  * Created on October 26, 2025, 3:13 PM
  */
-#define _XTAL_FREQ 4000000
-#include <stdbool.h>
-#include <htc.h>
-#include "interrupt.h"
-#include <xc.h>
-__CONFIG(0x3FF2); //config_word 1
-__CONFIG(0x3FFF); //config_word 2
-bool dem = false;
-bool ngat = false;
+#define _XTAL_FREQ 20000000
+//#ifndef XC_HEADER_TEMPLATE_H
+#define	XC_HEADER_TEMPLATE_H
+#include <xc.h> // include processor files - each processor file is guarded.  
+
+
+#pragma config FOSC = HS       // High-Speed Oscillator (dùng th?ch anh ngoài > 4MHz, ? ?ây 24MHz)
+
+#pragma config WDTE = OFF       // Watchdog Timer disabled
+
+#pragma config PWRTE = ON       // Power-up Timer enabled
+
+#pragma config BOREN = ON       // Brown-out Reset enabled
+
+#pragma config LVP = OFF        // Low-Voltage Programming enabled
+
+#pragma config CPD = ON        // Data EEPROM Memory Code Protection off
+
+#pragma config WRT = OFF        // Flash Program Memory Write Protection off
+
+#pragma config CP = ON 
 
 int a[9] = {0b00000001, 0b00000010, 0b00000100, 0b00001000, 0b00010000, 0b00100000, 0b01000000, 0b10000000};
 
@@ -162,16 +174,16 @@ void main(void) {
     TRISC = 0x00;
     TRISE1 = 0;
     TRISE2 = 0;
-    WPUB = 0x07;
-    TRISB = 0x07;
+//    WPUB = 0x07;
+    TRISB = 0xFF;
     PORTB = 0x00;
-    PORTD = 0x00;
+    PORTD = 0xFF;
     PORTC = 0x00;
     PORTE = 0x00;
-    nRBPU = 0; //cho phép dien tro kéo lên
+//    nRBPU = 0; //cho phép dien tro kéo lên
     Initialize_interrupt();
     while (1) {
-        NHAYDEN();
+        
     }
 
 
