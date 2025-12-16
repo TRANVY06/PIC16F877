@@ -55,6 +55,10 @@
 [v _RB2 RB2 `VEb  1 e 0 @50 ]
 "4116
 [v _RB3 RB3 `VEb  1 e 0 @51 ]
+"4119
+[v _RB4 RB4 `VEb  1 e 0 @52 ]
+"4122
+[v _RB5 RB5 `VEb  1 e 0 @53 ]
 "4209
 [v _RE0 RE0 `VEb  1 e 0 @72 ]
 "4389
@@ -68,7 +72,7 @@
 "40 C:\Users\TranVy\Desktop\PIC16F877\Bai_2_PWM.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"126
+"156
 } 0
 "10
 [v _setup_pwm setup_pwm `(v  1 e 1 0 ]

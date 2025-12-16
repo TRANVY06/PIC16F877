@@ -2695,14 +2695,16 @@ extern __bank0 __bit __timeout;
 #pragma config WRT = OFF
 
 #pragma config CP = ON
-extern unsigned char a=90;
-extern unsigned char i=40;
-extern unsigned char b=110;
+extern unsigned char a=125;
+extern unsigned char i=60;
+extern unsigned char b=160;
+extern unsigned char c=75;
+extern unsigned char d=250;
 # 9 "main.c" 2
 
 void setup_pwm() {
     TMR2 = 0x00;
-    PR2 = 199;
+    PR2 = 229;
     CCPR1L = 0;
     CCP1CON = 0;
     CCPR2L = 0;
@@ -2776,13 +2778,43 @@ void main(void) {
             CCP2CON = 0x00;
         } else if (RB2 == 1) {
             PORTD = 0x01;
-            CCPR1L = i;
+            CCPR1L = c;
             CCP1CON = 0x0C;
             CCPR2L = 0;
             CCP2CON = 0x00;
         } else if (RB1 == 1) {
             PORTD = 0x01;
+            CCPR1L = c;
+            CCP1CON = 0x0C;
+            CCPR2L = 0;
+            CCP2CON = 0x00;
+        } else if (RB0 == 1 && RB1 == 1 && RB2 == 1) {
+            PORTD = 0x02;
+            CCPR1L = c;
+            CCP1CON = 0x0C;
+            CCPR2L = 0;
+            CCP2CON = 0x00;
+        } else if (RB3 == 1 && RB1 == 1 && RB2 == 1) {
+            PORTD = 0x01;
+            CCPR1L = c;
+            CCP1CON = 0x0C;
+            CCPR2L = 0;
+            CCP2CON = 0x00;
+        } else if (RB0 == 1 && RB1 == 1 && RB2 == 1 && RB3 == 1) {
+            PORTD = 0x01;
             CCPR1L = i;
+            CCP1CON = 0x0C;
+            CCPR2L = 0;
+            CCP2CON = 0x00;
+        } else if (RB4 == 1) {
+            PORTD = 0x02;
+            CCPR1L = d;
+            CCP1CON = 0x0C;
+            CCPR2L = 0;
+            CCP2CON = 0x00;
+        } else if (RB5 == 1) {
+            PORTD = 0x01;
+            CCPR1L = d;
             CCP1CON = 0x0C;
             CCPR2L = 0;
             CCP2CON = 0x00;
@@ -2794,7 +2826,7 @@ void main(void) {
             CCP2CON = 0x00;
 
         }
-# 121 "main.c"
+# 151 "main.c"
     }
 
 

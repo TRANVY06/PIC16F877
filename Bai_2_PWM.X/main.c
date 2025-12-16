@@ -9,7 +9,7 @@
 
 void setup_pwm() {
     TMR2 = 0x00;
-    PR2 = 199;
+    PR2 = 229;
     CCPR1L = 0;
     CCP1CON = 0;
     CCPR2L = 0;
@@ -83,13 +83,43 @@ void main(void) {
             CCP2CON = 0x00;
         } else if (RB2 == 1) {
             PORTD = 0x01; // Qu?o trái PORTD=0x01,qu?o Ph?i PORTD = 0x02;
-            CCPR1L = i;
+            CCPR1L = c;
             CCP1CON = 0x0C;
             CCPR2L = 0;
             CCP2CON = 0x00;
         } else if (RB1 == 1) {
             PORTD = 0x01; // Qu?o trái PORTD=0x01,qu?o Ph?i PORTD = 0x02;
+            CCPR1L = c;
+            CCP1CON = 0x0C;
+            CCPR2L = 0;
+            CCP2CON = 0x00;
+        } else if (RB0 == 1 && RB1 == 1 && RB2 == 1) {
+            PORTD = 0x02; // Qu?o trái PORTD=0x01,qu?o Ph?i PORTD = 0x02;
+            CCPR1L = c;
+            CCP1CON = 0x0C;
+            CCPR2L = 0;
+            CCP2CON = 0x00;
+        } else if (RB3 == 1 && RB1 == 1 && RB2 == 1) {
+            PORTD = 0x01; // Qu?o trái PORTD=0x01,qu?o Ph?i PORTD = 0x02;
+            CCPR1L = c;
+            CCP1CON = 0x0C;
+            CCPR2L = 0;
+            CCP2CON = 0x00;
+        } else if (RB0 == 1 && RB1 == 1 && RB2 == 1 && RB3 == 1) {
+            PORTD = 0x01; // Qu?o trái PORTD=0x01,qu?o Ph?i PORTD = 0x02;
             CCPR1L = i;
+            CCP1CON = 0x0C;
+            CCPR2L = 0;
+            CCP2CON = 0x00;
+        } else if (RB4 == 1) {
+            PORTD = 0x02; // Qu?o trái PORTD=0x01,qu?o Ph?i PORTD = 0x02;
+            CCPR1L = d;
+            CCP1CON = 0x0C;
+            CCPR2L = 0;
+            CCP2CON = 0x00;
+        } else if (RB5 == 1) {
+            PORTD = 0x01; // Qu?o trái PORTD=0x01,qu?o Ph?i PORTD = 0x02;
+            CCPR1L = d;
             CCP1CON = 0x0C;
             CCPR2L = 0;
             CCP2CON = 0x00;

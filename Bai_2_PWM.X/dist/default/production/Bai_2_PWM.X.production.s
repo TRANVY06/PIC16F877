@@ -413,18 +413,26 @@ psect	idataCOMMON,class=CODE,space=0,delta=2,noexec
 global __pidataCOMMON
 __pidataCOMMON:
 	file	"./main.h"
+	line	26
+
+;initializer for _d
+	retlw	0FAh
+	line	25
+
+;initializer for _c
+	retlw	04Bh
 	line	24
 
 ;initializer for _b
-	retlw	06Eh
+	retlw	0A0h
 	line	23
 
 ;initializer for _i
-	retlw	028h
+	retlw	03Ch
 	line	22
 
 ;initializer for _a
-	retlw	05Ah
+	retlw	07Dh
 	global	_PORTB
 _PORTB	set	0x6
 	global	_PORTD
@@ -443,6 +451,10 @@ _CCP1CON	set	0x17
 _CCPR1L	set	0x15
 	global	_TMR2
 _TMR2	set	0x11
+	global	_RB5
+_RB5	set	0x35
+	global	_RB4
+_RB4	set	0x34
 	global	_RB3
 _RB3	set	0x33
 	global	_RB0
@@ -499,6 +511,18 @@ psect	dataCOMMON,class=COMMON,space=1,noexec
 global __pdataCOMMON
 __pdataCOMMON:
 	file	"./main.h"
+	line	26
+_d:
+       ds      1
+
+psect	dataCOMMON
+	file	"./main.h"
+	line	25
+_c:
+       ds      1
+
+psect	dataCOMMON
+	file	"./main.h"
 	line	24
 _b:
        ds      1
@@ -526,6 +550,10 @@ psect cinit,class=CODE,delta=2,merge=1
 	movwf	__pdataCOMMON+1&07fh		
 	fcall	__pidataCOMMON+2		;fetch initializer
 	movwf	__pdataCOMMON+2&07fh		
+	fcall	__pidataCOMMON+3		;fetch initializer
+	movwf	__pdataCOMMON+3&07fh		
+	fcall	__pidataCOMMON+4		;fetch initializer
+	movwf	__pdataCOMMON+4&07fh		
 psect cinit,class=CODE,delta=2,merge=1
 global end_of_initialization,__end_of__initialization
 
@@ -548,14 +576,14 @@ __pcstackCOMMON:
 ;!Data Sizes:
 ;!    Strings     0
 ;!    Constant    0
-;!    Data        3
+;!    Data        5
 ;!    BSS         0
 ;!    Persistent  0
 ;!    Stack       0
 ;!
 ;!Auto Spaces:
 ;!    Space          Size  Autos    Used
-;!    COMMON           14      0       3
+;!    COMMON           14      0       5
 ;!    BANK0            80      0       0
 ;!    BANK1            80      0       0
 ;!    BANK3            96      0       0
@@ -627,9 +655,9 @@ __pcstackCOMMON:
 ;!BITBANK1            80      0       0      0.0%
 ;!BANK0               80      0       0      0.0%
 ;!BITBANK0            80      0       0      0.0%
-;!COMMON              14      0       3     21.4%
+;!COMMON              14      0       5     35.7%
 ;!BITCOMMON           14      0       0      0.0%
-;!DATA                 0      0       3      0.0%
+;!DATA                 0      0       5      0.0%
 ;!STACK                0      0       0      0.0%
 
 	global	_main
@@ -678,7 +706,7 @@ _main:
 ; Regs used in _main: [status,2+status,0+pclath+cstack]
 	line	42
 	
-l651:	
+l669:	
 ;main.c: 42:     ANSEL = 0;
 	bsf	status, 5	;RP0=1, select bank3
 	bsf	status, 6	;RP1=1, select bank3
@@ -696,7 +724,7 @@ l651:
 	clrf	(136)^080h	;volatile
 	line	46
 	
-l653:	
+l671:	
 ;main.c: 46:     PORTD = 0x0F;
 	movlw	0Fh
 	bcf	status, 5	;RP0=0, select bank0
@@ -704,12 +732,12 @@ l653:
 	movwf	(8)	;volatile
 	line	47
 	
-l655:	
+l673:	
 ;main.c: 47:     setup_pwm();
 	fcall	_setup_pwm
 	line	48
 	
-l657:	
+l675:	
 ;main.c: 48:     TRISB = 0xFF;
 	movlw	0FFh
 	bsf	status, 5	;RP0=1, select bank1
@@ -717,24 +745,24 @@ l657:
 	movwf	(134)^080h	;volatile
 	line	49
 	
-l659:	
+l677:	
 ;main.c: 49:     TRISE0 = 0;
 	bcf	(1096/8)^080h,(1096)&7	;volatile
 	line	50
 	
-l661:	
+l679:	
 ;main.c: 50:     RE0 = 1;
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	status, 6	;RP1=0, select bank0
 	bsf	(72/8),(72)&7	;volatile
 	line	51
 	
-l663:	
+l681:	
 ;main.c: 51:     PORTB = 0x00;
 	clrf	(6)	;volatile
 	line	53
 	
-l665:	
+l683:	
 ;main.c: 53:         if (RB1 == 1 && RB2 == 1) {
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	status, 6	;RP1=0, select bank0
@@ -742,48 +770,48 @@ l665:
 	goto	u11
 	goto	u10
 u11:
-	goto	l71
+	goto	l79
 u10:
 	
-l667:	
+l685:	
 	btfss	(50/8),(50)&7	;volatile
 	goto	u21
 	goto	u20
 u21:
-	goto	l71
+	goto	l79
 u20:
 	line	54
 	
-l669:	
+l687:	
 ;main.c: 54:             DITHANG();
 	fcall	_DITHANG
 	line	56
 ;main.c: 56:         } else if (RB1 == 1 && RB0 == 1) {
-	goto	l665
+	goto	l683
 	
-l71:	
+l79:	
 	btfss	(49/8),(49)&7	;volatile
 	goto	u31
 	goto	u30
 u31:
-	goto	l73
+	goto	l81
 u30:
 	
-l671:	
+l689:	
 	btfss	(48/8),(48)&7	;volatile
 	goto	u41
 	goto	u40
 u41:
-	goto	l73
+	goto	l81
 u40:
 	line	58
 	
-l673:	
+l691:	
 ;main.c: 58:             PORTD = 0x02;
 	movlw	02h
 	movwf	(8)	;volatile
 	line	59
-	movlw	05Ah
+	movlw	07Dh
 	movwf	(21)	;volatile
 	line	60
 ;main.c: 60:             CCP1CON = 0x0C;
@@ -791,7 +819,7 @@ l673:
 	movwf	(23)	;volatile
 	line	61
 	
-l675:	
+l693:	
 ;main.c: 61:             CCPR2L = 0;
 	clrf	(27)	;volatile
 	line	62
@@ -799,135 +827,293 @@ l675:
 	clrf	(29)	;volatile
 	line	63
 ;main.c: 63:         } else if (RB3 == 1 && RB2 == 1) {
-	goto	l665
+	goto	l683
 	
-l73:	
+l81:	
 	btfss	(51/8),(51)&7	;volatile
 	goto	u51
 	goto	u50
 u51:
-	goto	l75
+	goto	l83
 u50:
 	
-l677:	
+l695:	
 	btfss	(50/8),(50)&7	;volatile
 	goto	u61
 	goto	u60
 u61:
-	goto	l75
+	goto	l83
 u60:
 	line	65
 	
-l679:	
+l697:	
 ;main.c: 65:             PORTD = 0x01;
 	movlw	01h
 	movwf	(8)	;volatile
 	line	66
-	movlw	05Ah
+	movlw	07Dh
 	movwf	(21)	;volatile
 	line	67
 ;main.c: 67:             CCP1CON = 0x0C;
 	movlw	0Ch
 	movwf	(23)	;volatile
-	goto	l675
+	goto	l693
 	line	70
 	
-l75:	
+l83:	
 	btfss	(48/8),(48)&7	;volatile
 	goto	u71
 	goto	u70
 u71:
-	goto	l77
+	goto	l85
 u70:
 	line	72
 	
-l683:	
+l701:	
 ;main.c: 72:             PORTD = 0x02;
 	movlw	02h
 	movwf	(8)	;volatile
 	line	73
-	movlw	06Eh
+	movlw	0A0h
 	movwf	(21)	;volatile
 	line	74
 ;main.c: 74:             CCP1CON = 0x0C;
 	movlw	0Ch
 	movwf	(23)	;volatile
-	goto	l675
+	goto	l693
 	line	77
 	
-l77:	
+l85:	
 	btfss	(51/8),(51)&7	;volatile
 	goto	u81
 	goto	u80
 u81:
-	goto	l79
+	goto	l87
 u80:
 	line	79
 	
-l687:	
+l705:	
 ;main.c: 79:             PORTD = 0x01;
 	movlw	01h
 	movwf	(8)	;volatile
 	line	80
-	movlw	06Eh
+	movlw	0A0h
 	movwf	(21)	;volatile
 	line	81
 ;main.c: 81:             CCP1CON = 0x0C;
 	movlw	0Ch
 	movwf	(23)	;volatile
-	goto	l675
+	goto	l693
 	line	84
 	
-l79:	
+l87:	
 	btfss	(50/8),(50)&7	;volatile
 	goto	u91
 	goto	u90
 u91:
-	goto	l81
+	goto	l89
 u90:
 	line	85
 	
-l691:	
+l709:	
 ;main.c: 85:             PORTD = 0x01;
 	movlw	01h
 	movwf	(8)	;volatile
 	line	86
-	movlw	028h
+	movlw	04Bh
 	movwf	(21)	;volatile
 	line	87
 ;main.c: 87:             CCP1CON = 0x0C;
 	movlw	0Ch
 	movwf	(23)	;volatile
-	goto	l675
+	goto	l693
 	line	90
 	
-l81:	
+l89:	
 	btfss	(49/8),(49)&7	;volatile
 	goto	u101
 	goto	u100
 u101:
-	goto	l699
+	goto	l91
 u100:
-	goto	l691
-	line	98
+	goto	l709
+	line	96
 	
-l699:	
-;main.c: 98:             CCPR1L = 0;
-	clrf	(21)	;volatile
+l91:	
+	btfss	(48/8),(48)&7	;volatile
+	goto	u111
+	goto	u110
+u111:
+	goto	l93
+u110:
+	
+l717:	
+	btfss	(49/8),(49)&7	;volatile
+	goto	u121
+	goto	u120
+u121:
+	goto	l93
+u120:
+	
+l719:	
+	btfss	(50/8),(50)&7	;volatile
+	goto	u131
+	goto	u130
+u131:
+	goto	l93
+u130:
+	line	97
+	
+l721:	
+;main.c: 97:             PORTD = 0x02;
+	movlw	02h
+	movwf	(8)	;volatile
+	line	98
+	movlw	04Bh
+	movwf	(21)	;volatile
 	line	99
-;main.c: 99:             CCP1CON = 0x00;
+;main.c: 99:             CCP1CON = 0x0C;
+	movlw	0Ch
+	movwf	(23)	;volatile
+	goto	l693
+	line	102
+	
+l93:	
+	btfss	(51/8),(51)&7	;volatile
+	goto	u141
+	goto	u140
+u141:
+	goto	l95
+u140:
+	
+l725:	
+	btfss	(49/8),(49)&7	;volatile
+	goto	u151
+	goto	u150
+u151:
+	goto	l95
+u150:
+	
+l727:	
+	btfss	(50/8),(50)&7	;volatile
+	goto	u161
+	goto	u160
+u161:
+	goto	l95
+u160:
+	goto	l709
+	line	108
+	
+l95:	
+	btfss	(48/8),(48)&7	;volatile
+	goto	u171
+	goto	u170
+u171:
+	goto	l97
+u170:
+	
+l733:	
+	btfss	(49/8),(49)&7	;volatile
+	goto	u181
+	goto	u180
+u181:
+	goto	l97
+u180:
+	
+l735:	
+	btfss	(50/8),(50)&7	;volatile
+	goto	u191
+	goto	u190
+u191:
+	goto	l97
+u190:
+	
+l737:	
+	btfss	(51/8),(51)&7	;volatile
+	goto	u201
+	goto	u200
+u201:
+	goto	l97
+u200:
+	line	109
+	
+l739:	
+;main.c: 109:             PORTD = 0x01;
+	movlw	01h
+	movwf	(8)	;volatile
+	line	110
+	movlw	03Ch
+	movwf	(21)	;volatile
+	line	111
+;main.c: 111:             CCP1CON = 0x0C;
+	movlw	0Ch
+	movwf	(23)	;volatile
+	goto	l693
+	line	114
+	
+l97:	
+	btfss	(52/8),(52)&7	;volatile
+	goto	u211
+	goto	u210
+u211:
+	goto	l99
+u210:
+	line	115
+	
+l743:	
+;main.c: 115:             PORTD = 0x02;
+	movlw	02h
+	movwf	(8)	;volatile
+	line	116
+	movlw	0FAh
+	movwf	(21)	;volatile
+	line	117
+;main.c: 117:             CCP1CON = 0x0C;
+	movlw	0Ch
+	movwf	(23)	;volatile
+	goto	l693
+	line	120
+	
+l99:	
+	btfss	(53/8),(53)&7	;volatile
+	goto	u221
+	goto	u220
+u221:
+	goto	l751
+u220:
+	line	121
+	
+l747:	
+;main.c: 121:             PORTD = 0x01;
+	movlw	01h
+	movwf	(8)	;volatile
+	line	122
+	movlw	0FAh
+	movwf	(21)	;volatile
+	line	123
+;main.c: 123:             CCP1CON = 0x0C;
+	movlw	0Ch
+	movwf	(23)	;volatile
+	goto	l693
+	line	128
+	
+l751:	
+;main.c: 128:             CCPR1L = 0;
+	clrf	(21)	;volatile
+	line	129
+;main.c: 129:             CCP1CON = 0x00;
 	clrf	(23)	;volatile
-	line	100
-;main.c: 100:             CCPR2L = 0;
+	line	130
+;main.c: 130:             CCPR2L = 0;
 	clrf	(27)	;volatile
-	line	101
-;main.c: 101:             CCP2CON = 0x00;
+	line	131
+;main.c: 131:             CCP2CON = 0x00;
 	clrf	(29)	;volatile
-	goto	l665
+	goto	l683
 	global	start
 	ljmp	start
 	callstack 0
-	line	126
+	line	156
 GLOBAL	__end_of_main
 	__end_of_main:
 	signat	_main,89
@@ -975,16 +1161,16 @@ _setup_pwm:
 ; Regs used in _setup_pwm: [status,2]
 	line	11
 	
-l631:	
+l649:	
 ;main.c: 11:     TMR2 = 0x00;
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	status, 6	;RP1=0, select bank0
 	clrf	(17)	;volatile
 	line	12
 	
-l633:	
-;main.c: 12:     PR2 = 199;
-	movlw	0C7h
+l651:	
+;main.c: 12:     PR2 = 229;
+	movlw	0E5h
 	bsf	status, 5	;RP0=1, select bank1
 	bcf	status, 6	;RP1=0, select bank1
 	movwf	(146)^080h	;volatile
@@ -1004,14 +1190,14 @@ l633:
 	clrf	(29)	;volatile
 	line	17
 	
-l635:	
+l653:	
 ;main.c: 17:     TRISC1 = 0;
 	bsf	status, 5	;RP0=1, select bank1
 	bcf	status, 6	;RP1=0, select bank1
 	bcf	(1081/8)^080h,(1081)&7	;volatile
 	line	18
 	
-l637:	
+l655:	
 ;main.c: 18:     TRISC2 = 0;
 	bcf	(1082/8)^080h,(1082)&7	;volatile
 	line	19
@@ -1024,12 +1210,12 @@ l637:
 	clrf	(18)	;volatile
 	line	21
 	
-l639:	
+l657:	
 ;main.c: 21:     TMR2ON = 1;
 	bsf	(146/8),(146)&7	;volatile
 	line	22
 	
-l59:	
+l67:	
 	return
 	callstack 0
 GLOBAL	__end_of_setup_pwm
@@ -1079,14 +1265,14 @@ _DITHANG:
 ; Regs used in _DITHANG: [status,2]
 	line	25
 	
-l641:	
+l659:	
 ;main.c: 25:     PORTD = 0xFF;
 	movlw	0FFh
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	status, 6	;RP1=0, select bank0
 	movwf	(8)	;volatile
 	line	26
-	movlw	028h
+	movlw	03Ch
 	movwf	(21)	;volatile
 	line	27
 ;main.c: 27:     CCP1CON = 0x0C;
@@ -1094,7 +1280,7 @@ l641:
 	movwf	(23)	;volatile
 	line	28
 	
-l643:	
+l661:	
 ;main.c: 28:     CCPR2L = 0;
 	clrf	(27)	;volatile
 	line	29
@@ -1102,7 +1288,7 @@ l643:
 	clrf	(29)	;volatile
 	line	30
 	
-l62:	
+l70:	
 	return
 	callstack 0
 GLOBAL	__end_of_DITHANG

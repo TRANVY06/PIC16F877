@@ -19,6 +19,8 @@
 #pragma config WRT = OFF        // Flash Program Memory Write Protection off
 
 #pragma config CP = ON  
-extern unsigned char a=90;
-extern unsigned char i=40;
-extern unsigned char b=110;
+extern unsigned char a=125;
+extern unsigned char i=60;
+extern unsigned char b=160;
+extern unsigned char c=75;
+extern unsigned char d=250;
