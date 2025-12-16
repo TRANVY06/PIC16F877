@@ -21,21 +21,26 @@ unsigned char limit_pwm(int val) {
 // ================== ??C C?M BI?N ==================
 
 void read_line_Error(void) {
+    /*
+     RB5   RB4   RB3 RB2   RB1    RB0  <--
+     L_SN       CENTER_SN         R_SN                  
+     
+     */
     Error = 0;
 
     if (RB5) Error -= 6; // ngoài cùng trái
-    if (RB5 && RB3) Error -= 4;
-    if (RB3) Error -= 3; // trái trong
-    if (RB2 && RB3) Error -= 2;
-    if (RB2) Error -= 1; // tâm trái
+    if (RB5 && RB4) Error -= 4;
+    if (RB4) Error -= 3; // trái trong
+    if (RB4 && RB3) Error -= 2;
+    if (RB3) Error -= 1; // tâm trái
 
-    if (RB1 && RB2) Error = 0;
+    if (RB2 && RB3) Error = 0; //CENTER
 
-    if (RB1) Error += 1; // tâm ph?i
+    if (RB2) Error += 1; // tâm ph?i
     if (RB1 && RB0) Error += 2;
-    if (RB0) Error += 3; // ph?i trong
-    if (RB4 && RB0) Error += 4;
-    if (RB4) Error += 6; // ngoài cùng ph?i
+    if (RB1) Error += 3; // ph?i trong
+    if (RB1 && RB0) Error += 4;
+    if (RB0) Error += 6; // ngoài cùng ph?i
 
 }
 
