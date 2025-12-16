@@ -8,6 +8,8 @@
 #define MoveBackward    0x0A //PORTD=0x0A xe lùi 
 #define TurnRight       0x09 //PORTD=0x09 xe xoay phai 
 #define TurnLeft        0x06 //PORTD=0x06 xe xoay trái 
+#define MoveRight       0x01 //PORTD=0x01 xe ti?n ph?i 
+#define MoveLeft        0x04 //PORTD=0x04 xe ti?n trái
 
 
 extern bool autocar = false;

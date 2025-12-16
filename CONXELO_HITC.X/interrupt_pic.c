@@ -14,8 +14,7 @@ void __interrupt() isr(void) {
         if (read_dataPortB == 0x40) { // Check for RB2
             autocar = false;
             drivercar = false;
-        } else if (read_dataPortB == 0x04) // Check for RB1
-            RE2 = 1;
+        } 
 
         RBIF = 0;
     }
@@ -23,7 +22,7 @@ void __interrupt() isr(void) {
 
 void Initialize_interrupt() {
     RBIF = 0;
-    RBIE = 1;
+    RBIE = 1;/
     GIE = 1;
     IOCB = 0x07;
 }
