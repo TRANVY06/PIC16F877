@@ -14,21 +14,21 @@
 
 
 # 1 "./Piclb_byNK.h" 1
-# 36 "./Piclb_byNK.h"
+# 17 "./Piclb_byNK.h"
 # 1 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/stdbool.h" 1 3
-# 37 "./Piclb_byNK.h" 2
+# 18 "./Piclb_byNK.h" 2
 # 1 "./SSLINE.h" 1
-# 20 "./SSLINE.h"
-extern unsigned int Error;
+# 24 "./SSLINE.h"
+extern int Error;
 
 
-void Bu_lech(void);
+
 unsigned char limit_pwm(int val);
 void read_line_Error(void);
 void motor_control(void);
-# 38 "./Piclb_byNK.h" 2
+# 19 "./Piclb_byNK.h" 2
 # 1 "./interrupt_pic.h" 1
-# 34 "./interrupt_pic.h"
+# 19 "./interrupt_pic.h"
 # 1 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include/xc.h" 1 3
 # 18 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include/xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2688,21 +2688,21 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 29 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include/xc.h" 2 3
-# 35 "./interrupt_pic.h" 2
-# 69 "./interrupt_pic.h"
+# 20 "./interrupt_pic.h" 2
+
+
+
     unsigned int read_dataPortB;
     void __attribute__((picinterrupt(("")))) isr(void);
     void Initialize_interrupt(void);
-# 39 "./Piclb_byNK.h" 2
+# 20 "./Piclb_byNK.h" 2
 # 1 "./CARDRIVER.h" 1
-
-
-
-
-
-extern _Bool autocar = 0;
-extern _Bool drivercar = 0;
-# 40 "./Piclb_byNK.h" 2
+# 17 "./CARDRIVER.h"
+void Status_Car(unsigned char status, unsigned int sp1, unsigned int sp2);
+void Car_Forward(unsigned int pwmL, unsigned int pwmR);
+extern _Bool autocar ;
+extern _Bool drivercar;
+# 21 "./Piclb_byNK.h" 2
 
 
 #pragma config FOSC = HS
@@ -2725,7 +2725,8 @@ void analogWrite_8bits(unsigned char cp1, unsigned char cp2);
 void analogWrite_init(unsigned char frequency);
 # 8 "main.c" 2
 
-
+_Bool drivercar = 0;
+_Bool autocar = 0;
 
 
 void main(void) {
@@ -2736,26 +2737,64 @@ void main(void) {
 
     TRISB = 0xFF;
     TRISD = 0xF0;
+
+
+
     TRISC = 0xF8;
+    TRISE = 0x00;
+    PORTB = 0x00;
+
 
     PORTD = 0x00;
 
 
     analogWrite_init(255);
 
+    Initialize_interrupt();
+
     while (1) {
-        if (RD5 == 1) {
-            autocar = 0;
-            drivercar = 1;
-        }
+        PORTE = 0x00;
+
         if (RD4 == 1) {
-            autocar = 1;
-            drivercar = 0;
+            _delay((unsigned long)((20)*(20000000/4000.0)));
+            if (RD4 == 1) {
+                autocar = 0;
+                drivercar = 0;
+                Car_Forward(0, 0);
+            }
+        } else if (RD6 == 1) {
+            _delay((unsigned long)((20)*(20000000/4000.0)));
+            if (RD6 == 1) {
+                autocar = 0;
+                drivercar = 1;
+                while (RD6 == 1);
+            }
+        } else if (RD5 == 1) {
+            _delay((unsigned long)((20)*(20000000/4000.0)));
+            if (RD5 == 1) {
+                autocar = 1;
+                drivercar = 0;
+                while (RD5 == 1);
+            }
         }
-        if (autocar == 1) {
-            _delay((unsigned long)((500)*(20000000/4000.0)));
-            read_line_Error();
-            motor_control();
+        if (autocar == 1 && drivercar == 0) {
+            while (1) {
+                read_line_Error();
+                motor_control();
+                if (RD4 == 1) {
+                    _delay((unsigned long)((20)*(20000000/4000.0)));
+                    if (RD4 == 1) {
+                        autocar = 0;
+                        drivercar = 0;
+                        Car_Forward(0, 0);
+                        break;
+                    }
+                }
+
+
+            }
+
+
         }
     }
 }

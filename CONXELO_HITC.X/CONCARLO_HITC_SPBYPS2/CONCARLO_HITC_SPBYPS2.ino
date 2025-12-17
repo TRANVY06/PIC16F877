@@ -96,24 +96,26 @@ void loop() {
     ps2x.read_gamepad(false, vibrate);
     if (ps2x.ButtonPressed(PSB_PINK)) {  //Nhấn nút |_|(PINK) trên PS2 Ngắt toàn độ chế độ của pic
       digitalWrite(NGAT_PIC, HIGH);      //(RB6 trên pic)
+      delay(100);
       digitalWrite(AUTODRIVER, LOW);
       digitalWrite(CARDRIVER, LOW);
       bool Ps2 = false;
       bool Auto = false;
-    }
-    if (ps2x.ButtonPressed(PSB_RED)) {  //Nhấn nút O(RED) trên PS2 chuyển chế độ điều khiển bằng PS2
+    } else if (ps2x.ButtonPressed(PSB_RED)) {  //Nhấn nút O(RED) trên PS2 chuyển chế độ điều khiển bằng PS2
+      digitalWrite(NGAT_PIC, LOW);
       digitalWrite(AUTODRIVER, LOW);
       digitalWrite(CARDRIVER, HIGH);  //(RD4 trên pic)
       bool Ps2 = true;
       bool Auto = false;
-    }
-    if (ps2x.ButtonPressed(PSB_BLUE)) {  //Nhấn nút X(BLUE) trên PS2 chuyển chế độ auto
-      digitalWrite(AUTODRIVER, HIGH);    //(RD5 trên pic)
+      delay(100);
+    } else if (ps2x.ButtonPressed(PSB_BLUE)) {  //Nhấn nút X(BLUE) trên PS2 chuyển chế độ auto
+      digitalWrite(NGAT_PIC, LOW);
+      digitalWrite(AUTODRIVER, HIGH);  //(RD5 trên pic)
       digitalWrite(CARDRIVER, LOW);
       bool Ps2 = false;
       bool Auto = true;
-    }
-    if (Ps2 == true && Auto == false) {
+      delay(100);
+    } else if (Ps2 == true && Auto == false) {
       ps2x.read_gamepad();
       if (ps2x.ButtonPressed(PSB_L1))
         digitalWrite(moveForward, HIGH);
@@ -128,6 +130,9 @@ void loop() {
       digitalWrite(moveBackward, LOW);
       digitalWrite(turnRight, LOW);
       digitalWrite(turnLeft, LOW);
+      digitalWrite(NGAT_PIC, LOW);
+      digitalWrite(AUTODRIVER, LOW);
+      digitalWrite(CARDRIVER, LOW);
     }
   }
 }

@@ -260,36 +260,24 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3546
 [; ;C:/Program Files/Microchip/MPLABX/v6.25/packs/Microchip/PIC16Fxxx_DFP/1.6.156/xc8\pic\include\proc/pic16f887.h: 3546: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
-"69 ./interrupt_pic.h
-[; ;./interrupt_pic.h: 69:     unsigned int read_dataPortB;
+"23 ./interrupt_pic.h
+[; ;./interrupt_pic.h: 23:     unsigned int read_dataPortB;
 [v _read_dataPortB `ui ~T0 @X0 1 e ]
-"6 ./CARDRIVER.h
-[; ;./CARDRIVER.h: 6: extern _Bool autocar = 0;
-[v _autocar `a ~T0 @X0 1 e ]
-[i _autocar
--> -> 0 `i `a
-]
-"7
-[; ;./CARDRIVER.h: 7: extern _Bool drivercar = 0;
-[v _drivercar `a ~T0 @X0 1 e ]
-[i _drivercar
--> -> 0 `i `a
-]
-"42 ./Piclb_byNK.h
+"23 ./Piclb_byNK.h
 [p x FOSC  =  HS         ]
-"43
+"24
 [p x WDTE  =  OFF        ]
-"44
+"25
 [p x PWRTE  =  ON        ]
-"45
+"26
 [p x BOREN  =  ON        ]
-"46
+"27
 [p x LVP  =  OFF         ]
-"47
+"28
 [p x CPD  =  ON         ]
-"48
+"29
 [p x WRT  =  OFF         ]
-"49
+"30
 [p x CP  =  ON ]
 "12 analogWrite.c
 [; ;analogWrite.c: 12: void analogWrite_init(unsigned char frequency) {
@@ -325,25 +313,25 @@ Version 4.0 HI-TECH Software Intermediate Code
 "26
 [; ;analogWrite.c: 26:     T2CON = 0b00000100;
 [e = _T2CON -> -> 4 `i `uc ]
-"33
-[; ;analogWrite.c: 33: }
+"32
+[; ;analogWrite.c: 32: }
 [e :UE 142 ]
 }
-"35
-[; ;analogWrite.c: 35: void analogWrite_8bits(unsigned char cp1, unsigned char cp2) {
+"34
+[; ;analogWrite.c: 34: void analogWrite_8bits(unsigned char cp1, unsigned char cp2) {
 [v _analogWrite_8bits `(v ~T0 @X0 1 ef2`uc`uc ]
 {
 [e :U _analogWrite_8bits ]
 [v _cp1 `uc ~T0 @X0 1 r1 ]
 [v _cp2 `uc ~T0 @X0 1 r2 ]
 [f ]
-"36
-[; ;analogWrite.c: 36:     CCPR1L = cp1;
+"35
+[; ;analogWrite.c: 35:     CCPR1L = cp1;
 [e = _CCPR1L _cp1 ]
-"38
-[; ;analogWrite.c: 38:     CCPR2L = cp2;
+"36
+[; ;analogWrite.c: 36:     CCPR2L = cp2;
 [e = _CCPR2L _cp2 ]
-"39
-[; ;analogWrite.c: 39: }
+"37
+[; ;analogWrite.c: 37: }
 [e :UE 143 ]
 }

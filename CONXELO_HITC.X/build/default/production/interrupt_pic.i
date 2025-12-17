@@ -14,8 +14,22 @@
 
 
 
+# 1 "./Piclb_byNK.h" 1
+# 17 "./Piclb_byNK.h"
+# 1 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/stdbool.h" 1 3
+# 18 "./Piclb_byNK.h" 2
+# 1 "./SSLINE.h" 1
+# 24 "./SSLINE.h"
+extern int Error;
+
+
+
+unsigned char limit_pwm(int val);
+void read_line_Error(void);
+void motor_control(void);
+# 19 "./Piclb_byNK.h" 2
 # 1 "./interrupt_pic.h" 1
-# 34 "./interrupt_pic.h"
+# 19 "./interrupt_pic.h"
 # 1 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include/xc.h" 1 3
 # 18 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include/xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2675,21 +2689,51 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 29 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include/xc.h" 2 3
-# 35 "./interrupt_pic.h" 2
-# 69 "./interrupt_pic.h"
+# 20 "./interrupt_pic.h" 2
+
+
+
     unsigned int read_dataPortB;
     void __attribute__((picinterrupt(("")))) isr(void);
     void Initialize_interrupt(void);
+# 20 "./Piclb_byNK.h" 2
+# 1 "./CARDRIVER.h" 1
+# 17 "./CARDRIVER.h"
+void Status_Car(unsigned char status, unsigned int sp1, unsigned int sp2);
+void Car_Forward(unsigned int pwmL, unsigned int pwmR);
+extern _Bool autocar ;
+extern _Bool drivercar;
+# 21 "./Piclb_byNK.h" 2
+
+
+#pragma config FOSC = HS
+#pragma config WDTE = OFF
+#pragma config PWRTE = ON
+#pragma config BOREN = ON
+#pragma config LVP = OFF
+#pragma config CPD = ON
+#pragma config WRT = OFF
+#pragma config CP = ON
+
+
+
+
+
+void analogRead_init(unsigned char st);
+unsigned int analogRead_8bits(unsigned char pin);
+unsigned int analogRead_10bits(unsigned char pin);
+void analogWrite_8bits(unsigned char cp1, unsigned char cp2);
+void analogWrite_init(unsigned char frequency);
 # 9 "interrupt_pic.c" 2
 
 void __attribute__((picinterrupt(("")))) isr(void) {
     if (RBIE == 1 && RBIF == 1) {
-
-        read_dataPortB = PORTB & 0xC0;
-        if (read_dataPortB == 0x40)
-            RE2 = 0;
-        else if (read_dataPortB == 0x04)
-            RE2 = 1;
+        read_dataPortB = PORTB & 0b01000000;
+        if (read_dataPortB == 0x40) {
+            autocar = 0;
+            drivercar = 0;
+            RE0=1;
+        }
 
         RBIF = 0;
     }

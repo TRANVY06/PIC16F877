@@ -7,29 +7,26 @@
 # 1 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include/language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "SSLINE.c" 2
-# 1 "./SSLINE.h" 1
-# 20 "./SSLINE.h"
-extern unsigned int Error;
 
 
-void Bu_lech(void);
-unsigned char limit_pwm(int val);
-void read_line_Error(void);
-void motor_control(void);
-# 2 "SSLINE.c" 2
+
+
 # 1 "./Piclb_byNK.h" 1
-# 36 "./Piclb_byNK.h"
+# 17 "./Piclb_byNK.h"
 # 1 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/stdbool.h" 1 3
-# 37 "./Piclb_byNK.h" 2
+# 18 "./Piclb_byNK.h" 2
 # 1 "./SSLINE.h" 1
-# 23 "./SSLINE.h"
-void Bu_lech(void);
+# 24 "./SSLINE.h"
+extern int Error;
+
+
+
 unsigned char limit_pwm(int val);
 void read_line_Error(void);
 void motor_control(void);
-# 38 "./Piclb_byNK.h" 2
+# 19 "./Piclb_byNK.h" 2
 # 1 "./interrupt_pic.h" 1
-# 34 "./interrupt_pic.h"
+# 19 "./interrupt_pic.h"
 # 1 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include/xc.h" 1 3
 # 18 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include/xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2689,21 +2686,21 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 29 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include/xc.h" 2 3
-# 35 "./interrupt_pic.h" 2
-# 69 "./interrupt_pic.h"
+# 20 "./interrupt_pic.h" 2
+
+
+
     unsigned int read_dataPortB;
     void __attribute__((picinterrupt(("")))) isr(void);
     void Initialize_interrupt(void);
-# 39 "./Piclb_byNK.h" 2
+# 20 "./Piclb_byNK.h" 2
 # 1 "./CARDRIVER.h" 1
-
-
-
-
-
-extern _Bool autocar = 0;
-extern _Bool drivercar = 0;
-# 40 "./Piclb_byNK.h" 2
+# 17 "./CARDRIVER.h"
+void Status_Car(unsigned char status, unsigned int sp1, unsigned int sp2);
+void Car_Forward(unsigned int pwmL, unsigned int pwmR);
+extern _Bool autocar ;
+extern _Bool drivercar;
+# 21 "./Piclb_byNK.h" 2
 
 
 #pragma config FOSC = HS
@@ -2724,19 +2721,13 @@ unsigned int analogRead_8bits(unsigned char pin);
 unsigned int analogRead_10bits(unsigned char pin);
 void analogWrite_8bits(unsigned char cp1, unsigned char cp2);
 void analogWrite_init(unsigned char frequency);
-# 3 "SSLINE.c" 2
+# 6 "SSLINE.c" 2
 
-unsigned int Error=0;
+int Error = 0;
+static int last_Error = 0;
+static unsigned int lost_cnt = 0;
 
 
-
-void Bu_lech(void) {
-
-    _delay((unsigned long)((2000)*(20000000/4000000.0)));
-    RD1 = 0;
-    _delay((unsigned long)((50)*(20000000/4000000.0)));
-    RD1 = 1;
-}
 
 unsigned char limit_pwm(int val) {
     if (val > 255) return 255;
@@ -2747,43 +2738,70 @@ unsigned char limit_pwm(int val) {
 
 
 void read_line_Error(void) {
-    Error = 0;
+    int found = 0;
+    if (RB3 == 1 && RB2 == 1) {
+        Error = 0;
+        found = 1;
+    } else if (RB5 == 1) {
+        Error = -4;
+        found = 1;
+    } else if (RB0 == 1) {
+        Error = 4;
+        found = 1;
+    } else if (RB4 == 1) {
+        Error = -2;
+        found = 1;
+    } else if (RB1 == 1) {
+        Error = 2;
+        found = 1;
+    } else if (RB3 == 1) {
+        Error = -1;
+        found = 1;
+    } else if (RB2 == 1) {
+        Error = 1;
+        found = 1;
+    }
 
-    if (RB5) Error -= 6;
-    if (RB5 && RB3) Error -= 4;
-    if (RB3) Error -= 3;
-    if (RB2 && RB3) Error -= 2;
-    if (RB2) Error -= 1;
+    if (found) {
+        last_Error = Error;
+        lost_cnt = 0;
 
-    if (RB1 && RB2) Error = 0;
-
-    if (RB1) Error += 1;
-    if (RB1 && RB0) Error += 2;
-    if (RB0) Error += 3;
-    if (RB4 && RB0) Error += 4;
-    if (RB4) Error += 6;
+    } else {
+        Error = last_Error;
+        lost_cnt++;
+    }
 
 }
 
 
 
+
+
 void motor_control(void) {
-    unsigned char speed;
 
-    speed = 150 + 20 * abs(Error);
-    speed = limit_pwm(speed);
+    int pwmL, pwmR;
+    int correction = 20 * Error;
 
-    analogWrite_8bits(speed, 0);
-
-    if (Error == 0) {
-        RD1 = 1;
-        RD0 = 1;
-
-    } else if (Error > 0) {
-        RD1 = 1;
-        RD0 = 0;
-    } else if (Error < 0) {
-        RD0 = 1;
-        RD1 = 0;
+    if (lost_cnt > 6) {
+        if (last_Error > 0)
+            Status_Car(0x09, 160, 160);
+        else
+            Status_Car(0x06, 160, 160);
+        return;
     }
+
+    pwmL = 140 - correction;
+    pwmR = 140 + correction + 6;
+
+    pwmL = limit_pwm(pwmL);
+    pwmR = limit_pwm(pwmR);
+
+    if (abs(Error) >= 2) {
+        if (Error > 0)
+            Status_Car(0x09, pwmL, pwmR);
+        else if (Error < 0)
+            Status_Car(0x06, pwmL, pwmR);
+        return;
+    } else
+        Car_Forward(pwmL, pwmR);
 }

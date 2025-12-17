@@ -2676,34 +2676,32 @@ extern __bank0 __bit __timeout;
 # 29 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include/xc.h" 2 3
 # 10 "analogWrite.c" 2
 # 1 "./Piclb_byNK.h" 1
-# 36 "./Piclb_byNK.h"
+# 17 "./Piclb_byNK.h"
 # 1 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/stdbool.h" 1 3
-# 37 "./Piclb_byNK.h" 2
+# 18 "./Piclb_byNK.h" 2
 # 1 "./SSLINE.h" 1
-# 20 "./SSLINE.h"
-extern unsigned int Error;
+# 24 "./SSLINE.h"
+extern int Error;
 
 
-void Bu_lech(void);
+
 unsigned char limit_pwm(int val);
 void read_line_Error(void);
 void motor_control(void);
-# 38 "./Piclb_byNK.h" 2
+# 19 "./Piclb_byNK.h" 2
 # 1 "./interrupt_pic.h" 1
-# 69 "./interrupt_pic.h"
+# 23 "./interrupt_pic.h"
     unsigned int read_dataPortB;
     void __attribute__((picinterrupt(("")))) isr(void);
     void Initialize_interrupt(void);
-# 39 "./Piclb_byNK.h" 2
+# 20 "./Piclb_byNK.h" 2
 # 1 "./CARDRIVER.h" 1
-
-
-
-
-
-extern _Bool autocar = 0;
-extern _Bool drivercar = 0;
-# 40 "./Piclb_byNK.h" 2
+# 17 "./CARDRIVER.h"
+void Status_Car(unsigned char status, unsigned int sp1, unsigned int sp2);
+void Car_Forward(unsigned int pwmL, unsigned int pwmR);
+extern _Bool autocar ;
+extern _Bool drivercar;
+# 21 "./Piclb_byNK.h" 2
 
 
 #pragma config FOSC = HS
@@ -2746,11 +2744,9 @@ void analogWrite_init(unsigned char frequency) {
 
 
 
-
 }
 
 void analogWrite_8bits(unsigned char cp1, unsigned char cp2) {
     CCPR1L = cp1;
-
     CCPR2L = cp2;
 }

@@ -1,4 +1,4 @@
-# 1 "analogRead.c"
+# 1 "CARDRIVER.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 295 "<built-in>" 3
@@ -6,14 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include/language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "analogRead.c" 2
-
-
-
-
-
-
-
+# 1 "CARDRIVER.c" 2
 # 1 "./Piclb_byNK.h" 1
 # 17 "./Piclb_byNK.h"
 # 1 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/stdbool.h" 1 3
@@ -2724,42 +2717,19 @@ unsigned int analogRead_8bits(unsigned char pin);
 unsigned int analogRead_10bits(unsigned char pin);
 void analogWrite_8bits(unsigned char cp1, unsigned char cp2);
 void analogWrite_init(unsigned char frequency);
-# 9 "analogRead.c" 2
+# 2 "CARDRIVER.c" 2
 
-void analogRead_init(unsigned char st) {
-    if (st == 8) {
-        ADCON0 = 0XC1;
-        ADCON1 = 0X00;
-    } else if (st == 10) {
-        ADCON0 = 0XC1;
-        ADCON1 = 0XC0;
-    }
+
+void Status_Car(unsigned char status, unsigned int sp1, unsigned int sp2) {
+    PORTD &= 0xF0;
+    PORTD |= status;
+    analogWrite_8bits(sp1, sp2);
+# 16 "CARDRIVER.c"
 }
 
-unsigned int analogRead_8bits(unsigned char pin) {
 
-
-    if (pin > 10) {
-        return 0;
-    }
-    ADCON0 &= 0x41;
-    ADCON0 |= pin << 2;
-    _delay((unsigned long)((20)*(20000000/4000000.0)));
-    GO_DONE = 1;
-    while (GO_DONE);
-    return ADRESH;
-}
-
-unsigned int analogRead_10bits(unsigned char pin) {
-
-
-    if (pin > 10) {
-        return 0;
-    }
-    ADCON0 &= 0x41;
-    ADCON0 |= pin << 2;
-    _delay((unsigned long)((20)*(20000000/4000000.0)));
-    GO_DONE = 1;
-    while (GO_DONE);
-    return ((ADRESH << 8) + ADRESL);
+void Car_Forward(unsigned int pwmL, unsigned int pwmR) {
+    PORTD &= 0xF0;
+    PORTD |= 0x05;
+    analogWrite_8bits(pwmL, pwmR);
 }

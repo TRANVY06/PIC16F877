@@ -1,5 +1,5 @@
-build/default/production/analogRead.p1:  \
-analogRead.c  \
+build/default/production/CARDRIVER.p1:  \
+CARDRIVER.c  \
 Piclb_byNK.h  \
 SSLINE.h  \
 interrupt_pic.h  \

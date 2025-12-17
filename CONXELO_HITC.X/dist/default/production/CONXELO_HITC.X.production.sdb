@@ -5,38 +5,44 @@
 [d frameptr 0 ]
 "12 C:\Users\TranVy\Desktop\PIC16F877\CONXELO_HITC.X\analogWrite.c
 [v _analogWrite_init analogWrite_init `(v  1 e 1 0 ]
-"35
+"34
 [v _analogWrite_8bits analogWrite_8bits `(v  1 e 1 0 ]
 "1 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\abs.c
 [v _abs abs `(i  1 e 2 0 ]
 "10 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\sprcadd.c
 [v ___fladd __fladd `(d  1 e 4 0 ]
+"15 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
 "4 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\Umul8_16.c
 [v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
 "6 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\pic\__eeprom.c
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
+"4 C:\Users\TranVy\Desktop\PIC16F877\CONXELO_HITC.X\CARDRIVER.c
+[v _Status_Car Status_Car `(v  1 e 1 0 ]
+"19
+[v _Car_Forward Car_Forward `(v  1 e 1 0 ]
 "10 C:\Users\TranVy\Desktop\PIC16F877\CONXELO_HITC.X\interrupt_pic.c
 [v _isr isr `II(v  1 e 1 0 ]
-"12 C:\Users\TranVy\Desktop\PIC16F877\CONXELO_HITC.X\main.c
+"23
+[v _Initialize_interrupt Initialize_interrupt `(v  1 e 1 0 ]
+"13 C:\Users\TranVy\Desktop\PIC16F877\CONXELO_HITC.X\main.c
 [v _main main `(v  1 e 1 0 ]
-"16 C:\Users\TranVy\Desktop\PIC16F877\CONXELO_HITC.X\SSLINE.c
+"13 C:\Users\TranVy\Desktop\PIC16F877\CONXELO_HITC.X\SSLINE.c
 [v _limit_pwm limit_pwm `(uc  1 e 1 0 ]
-"24
+"21
 [v _read_line_Error read_line_Error `(v  1 e 1 0 ]
-"45
+"61
 [v _motor_control motor_control `(v  1 e 1 0 ]
-"6 C:\Users\TranVy\Desktop\PIC16F877\CONXELO_HITC.X/CARDRIVER.h
-[v _autocar autocar `a  1 e 1 0 ]
-"7
-[v _drivercar drivercar `a  1 e 1 0 ]
-"69 C:\Users\TranVy\Desktop\PIC16F877\CONXELO_HITC.X/interrupt_pic.h
+"23 C:\Users\TranVy\Desktop\PIC16F877\CONXELO_HITC.X/interrupt_pic.h
 [v _read_dataPortB read_dataPortB `ui  1 e 2 0 ]
 "228 C:/Program Files/Microchip/MPLABX/v6.25/packs/Microchip/PIC16Fxxx_DFP/1.6.156/xc8\pic\include\proc/pic16f887.h
 [v _PORTB PORTB `VEuc  1 e 1 @6 ]
 "352
 [v _PORTD PORTD `VEuc  1 e 1 @8 ]
+"414
+[v _PORTE PORTE `VEuc  1 e 1 @9 ]
 "765
 [v _TMR2 TMR2 `VEuc  1 e 1 @17 ]
 "772
@@ -59,6 +65,8 @@
 [v _TRISC TRISC `VEuc  1 e 1 @135 ]
 "1602
 [v _TRISD TRISD `VEuc  1 e 1 @136 ]
+"1664
+[v _TRISE TRISE `VEuc  1 e 1 @137 ]
 "2041
 [v _PR2 PR2 `VEuc  1 e 1 @146 ]
 "2416
@@ -91,69 +99,112 @@
 [v _RBIE RBIE `VEb  1 e 0 @91 ]
 "4134
 [v _RBIF RBIF `VEb  1 e 0 @88 ]
-"4185
-[v _RD0 RD0 `VEb  1 e 0 @64 ]
-"4188
-[v _RD1 RD1 `VEb  1 e 0 @65 ]
 "4197
 [v _RD4 RD4 `VEb  1 e 0 @68 ]
 "4200
 [v _RD5 RD5 `VEb  1 e 0 @69 ]
-"4215
-[v _RE2 RE2 `VEb  1 e 0 @74 ]
+"4203
+[v _RD6 RD6 `VEb  1 e 0 @70 ]
+"4209
+[v _RE0 RE0 `VEb  1 e 0 @72 ]
 "4455
 [v _TRISC1 TRISC1 `VEb  1 e 0 @1081 ]
 "4458
 [v _TRISC2 TRISC2 `VEb  1 e 0 @1082 ]
-"4 C:\Users\TranVy\Desktop\PIC16F877\CONXELO_HITC.X\SSLINE.c
-[v _Error Error `ui  1 e 2 0 ]
-"12 C:\Users\TranVy\Desktop\PIC16F877\CONXELO_HITC.X\main.c
+"9 C:\Users\TranVy\Desktop\PIC16F877\CONXELO_HITC.X\main.c
+[v _drivercar drivercar `a  1 e 1 0 ]
+"10
+[v _autocar autocar `a  1 e 1 0 ]
+"7 C:\Users\TranVy\Desktop\PIC16F877\CONXELO_HITC.X\SSLINE.c
+[v _Error Error `i  1 e 2 0 ]
+"8
+[v _last_Error last_Error `i  1 s 2 last_Error ]
+"9
+[v _lost_cnt lost_cnt `ui  1 s 2 lost_cnt ]
+"13 C:\Users\TranVy\Desktop\PIC16F877\CONXELO_HITC.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"42
+"81
 } 0
-"24 C:\Users\TranVy\Desktop\PIC16F877\CONXELO_HITC.X\SSLINE.c
+"21 C:\Users\TranVy\Desktop\PIC16F877\CONXELO_HITC.X\SSLINE.c
 [v _read_line_Error read_line_Error `(v  1 e 1 0 ]
 {
-"41
+"22
+[v read_line_Error@found found `i  1 a 2 4 ]
+"55
 } 0
-"45
+"61
 [v _motor_control motor_control `(v  1 e 1 0 ]
 {
-"46
-[v motor_control@speed speed `uc  1 a 1 5 ]
+"63
+[v motor_control@pwmR pwmR `i  1 a 2 11 ]
+[v motor_control@pwmL pwmL `i  1 a 2 9 ]
 "64
+[v motor_control@correction correction `i  1 a 2 7 ]
+"88
 } 0
-"16
+"13
 [v _limit_pwm limit_pwm `(uc  1 e 1 0 ]
 {
 [v limit_pwm@val val `i  1 p 2 4 ]
-"20
+"17
 } 0
-"35 C:\Users\TranVy\Desktop\PIC16F877\CONXELO_HITC.X\analogWrite.c
-[v _analogWrite_8bits analogWrite_8bits `(v  1 e 1 0 ]
-{
-[v analogWrite_8bits@cp1 cp1 `uc  1 p 1 wreg ]
-[v analogWrite_8bits@cp1 cp1 `uc  1 p 1 wreg ]
-[v analogWrite_8bits@cp2 cp2 `uc  1 p 1 4 ]
-[v analogWrite_8bits@cp1 cp1 `uc  1 p 1 5 ]
-"39
-} 1
 "1 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\abs.c
 [v _abs abs `(i  1 e 2 0 ]
 {
 [v abs@a a `i  1 p 2 4 ]
 "4
 } 0
-"12 C:\Users\TranVy\Desktop\PIC16F877\CONXELO_HITC.X\analogWrite.c
+"15 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+{
+"17
+[v ___wmul@product product `ui  1 a 2 4 ]
+"15
+[v ___wmul@multiplier multiplier `ui  1 p 2 0 ]
+[v ___wmul@multiplicand multiplicand `ui  1 p 2 2 ]
+"53
+} 0
+"4 C:\Users\TranVy\Desktop\PIC16F877\CONXELO_HITC.X\CARDRIVER.c
+[v _Status_Car Status_Car `(v  1 e 1 0 ]
+{
+[v Status_Car@status status `uc  1 p 1 wreg ]
+[v Status_Car@status status `uc  1 p 1 wreg ]
+[v Status_Car@sp1 sp1 `ui  1 p 2 0 ]
+[v Status_Car@sp2 sp2 `ui  1 p 2 2 ]
+[v Status_Car@status status `uc  1 p 1 4 ]
+"16
+} 1
+"19
+[v _Car_Forward Car_Forward `(v  1 e 1 0 ]
+{
+[v Car_Forward@pwmL pwmL `ui  1 p 2 0 ]
+[v Car_Forward@pwmR pwmR `ui  1 p 2 2 ]
+"23
+} 0
+"34 C:\Users\TranVy\Desktop\PIC16F877\CONXELO_HITC.X\analogWrite.c
+[v _analogWrite_8bits analogWrite_8bits `(v  1 e 1 0 ]
+{
+[v analogWrite_8bits@cp1 cp1 `uc  1 p 1 wreg ]
+[v analogWrite_8bits@cp1 cp1 `uc  1 p 1 wreg ]
+[v analogWrite_8bits@cp2 cp2 `uc  1 p 1 4 ]
+[v analogWrite_8bits@cp1 cp1 `uc  1 p 1 5 ]
+"37
+} 1
+"12
 [v _analogWrite_init analogWrite_init `(v  1 e 1 0 ]
 {
 [v analogWrite_init@frequency frequency `uc  1 p 1 wreg ]
 [v analogWrite_init@frequency frequency `uc  1 p 1 wreg ]
 [v analogWrite_init@frequency frequency `uc  1 p 1 4 ]
-"33
+"32
 } 1
-"10 C:\Users\TranVy\Desktop\PIC16F877\CONXELO_HITC.X\interrupt_pic.c
+"23 C:\Users\TranVy\Desktop\PIC16F877\CONXELO_HITC.X\interrupt_pic.c
+[v _Initialize_interrupt Initialize_interrupt `(v  1 e 1 0 ]
+{
+"28
+} 0
+"10
 [v _isr isr `II(v  1 e 1 0 ]
 {
 "21

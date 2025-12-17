@@ -29,11 +29,9 @@ void analogWrite_init(unsigned char frequency) {
                                    TMR2ON  T2CKPS1  T2CKPS0
      */
 
-
 }
 
 void analogWrite_8bits(unsigned char cp1, unsigned char cp2) {
     CCPR1L = cp1;
-
     CCPR2L = cp2;
 }

@@ -1,16 +1,14 @@
+/*
+ * File SSLINE.c
+ 
+ */
 #include "Piclb_byNK.h"
-
-unsigned int Error=0;
+#include <stdlib.h>
+int Error = 0;
+static int last_Error = 0;
+static unsigned int lost_cnt = 0;
 // ================== HÀM GI?I H?N PWM ==================
 //----------Ch?ng l?ch h??ng-----------
-
-void Bu_lech(void) {
-    // bù l?ch ph?i
-    __delay_us(2000);
-    RD1 = 0; // t?t bánh trái r?t ng?n
-    __delay_us(50);
-    RD1 = 1;
-}
 
 unsigned char limit_pwm(int val) {
     if (val > MAX_SPEED) return MAX_SPEED;
@@ -21,45 +19,70 @@ unsigned char limit_pwm(int val) {
 // ================== ??C C?M BI?N ==================
 
 void read_line_Error(void) {
-    /*
-     RB5   RB4   RB3 RB2   RB1    RB0  <--
-     L_SN       CENTER_SN         R_SN                  
-     
-     */
-    Error = 0;
+    int found = 0;
+    if (RB3 == 1 && RB2 == 1) {
+        Error = 0;
+        found = 1;
+    } else if (RB5 == 1) {
+        Error = -4;
+        found = 1;
+    } else if (RB0 == 1) {
+        Error = 4;
+        found = 1;
+    } else if (RB4 == 1) {
+        Error = -2;
+        found = 1;
+    } else if (RB1 == 1) {
+        Error = 2;
+        found = 1;
+    } else if (RB3 == 1) {
+        Error = -1;
+        found = 1;
+    } else if (RB2 == 1) {
+        Error = 1;
+        found = 1;
+    }
 
-    if (RB5) Error -= 6; // ngoài cùng trái
-    if (RB5 && RB4) Error -= 4;
-    if (RB4) Error -= 3; // trái trong
-    if (RB4 && RB3) Error -= 2;
-    if (RB3) Error -= 1; // tâm trái
+    if (found) {
+        last_Error = Error;
+        lost_cnt = 0;
 
-    if (RB2 && RB3) Error = 0; //CENTER
-
-    if (RB2) Error += 1; // tâm ph?i
-    if (RB1 && RB0) Error += 2;
-    if (RB1) Error += 3; // ph?i trong
-    if (RB1 && RB0) Error += 4;
-    if (RB0) Error += 6; // ngoài cùng ph?i
+    } else {
+        Error = last_Error;
+        lost_cnt++;
+    }
 
 }
+
+
 
 // ================== ?I?U KHI?N ??NG C? ==================
 
 void motor_control(void) {
-    unsigned char speed;
 
-    speed = BASE_SPEED + KP * abs(Error);
-    speed = limit_pwm(speed);
-
-    analogWrite_8bits(speed, 0);
-
-    if (Error == 0) {
- 
-        //        Bu_lech();
-    } else if (Error > 0) { // l?ch ph?i
-
-    } else if (Error < 0) { // l?ch trái
-
+    int pwmL, pwmR;
+    int correction = KP * Error;
+    // ======  M?T LINE ? QUAY THEO H??NG CU?I ======
+    if (lost_cnt > LOST_LIMIT) {
+        if (last_Error > 0)
+            Status_Car(TurnRight, TURN_SPEED, TURN_SPEED);
+        else
+            Status_Car(TurnLeft, TURN_SPEED, TURN_SPEED);
+        return;
     }
+    // ======  PID TH??NG ======
+    pwmL = BASE_SPEED - correction;
+    pwmR = BASE_SPEED + correction + MOTOR_R_COMP;
+
+    pwmL = limit_pwm(pwmL);
+    pwmR = limit_pwm(pwmR);
+    // ======  L?CH L?N ? KHÓA BÁNH ======
+    if (abs(Error) >= 2) {
+        if (Error > 0)
+            Status_Car(TurnRight, pwmL, pwmR);
+        else if (Error < 0)
+            Status_Car(TurnLeft, pwmL, pwmR);
+        return;
+    } else
+        Car_Forward(pwmL, pwmR);
 }

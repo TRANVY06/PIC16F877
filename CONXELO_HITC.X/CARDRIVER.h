@@ -1,7 +1,10 @@
 /*
- RD7  RB6     RD5              RD4       RD3    RD2   RD1   RD0 
-  x    x    drivercar       autocar      LPWM   RPWM  LPWM  RPWM
-                                         Phai   Phai  Trái  Trái
+ * File CARDRIVER.h
+ */
+/*
+ RD7  RB6         RD5         RD4          RD3    RD2   RD1   RD0 
+  x  drivercar  autocar       NGAT         LPWM   RPWM  LPWM  RPWM
+                                           Phai   Phai  Trái  Trái
  */
 
 #define MoveForward     0x05 //PORTD=0x05 xe tien 
@@ -11,6 +14,7 @@
 #define MoveRight       0x01 //PORTD=0x01 xe ti?n ph?i 
 #define MoveLeft        0x04 //PORTD=0x04 xe ti?n trái
 
-
-extern bool autocar = false;
-extern bool drivercar = false;
+void Status_Car(unsigned char status, unsigned int sp1, unsigned int sp2);
+void Car_Forward(unsigned int pwmL, unsigned int pwmR); //only use to line tracking  
+extern bool autocar ;
+extern bool drivercar;

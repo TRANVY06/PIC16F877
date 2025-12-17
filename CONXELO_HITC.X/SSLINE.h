@@ -1,7 +1,8 @@
-
-//#include "Piclb_byNK.h"
-// ================== THAM S? CH?NH ==================
-#define BASE_SPEED     150     // t?c ?? c? b?n
+/*
+ * File SSLINE.h
+ */
+// ================== THAM SO CHINH ==================
+#define BASE_SPEED     140     // t?c ?? c? b?n
 /* Xe ch?y nhanh
  * ? BASE_SPEED (150 ? 180)
  */
@@ -13,14 +14,20 @@
 
  */
 #define MAX_SPEED      255
-// ================== BI?N TOÀN C?C ==================
+// ================== BIEN TOÀN CUC ==================
+#define TURN_SPEED     160
+#define MOTOR_R_COMP 6
+#define LOST_LIMIT  6   
 #ifndef SSLINE_H
 #define SSLINE_H
 
-extern unsigned int Error;
+extern int Error;
 
 #endif
-void Bu_lech(void);
+
 unsigned char limit_pwm(int val);
 void read_line_Error(void);
 void motor_control(void);
+
+
+
