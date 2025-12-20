@@ -33,7 +33,7 @@
 [v _limit_pwm limit_pwm `(uc  1 e 1 0 ]
 "21
 [v _read_line_Error read_line_Error `(v  1 e 1 0 ]
-"61
+"79
 [v _motor_control motor_control `(v  1 e 1 0 ]
 "23 C:\Users\TranVy\Desktop\PIC16F877\CONXELO_HITC.X/interrupt_pic.h
 [v _read_dataPortB read_dataPortB `ui  1 e 2 0 ]
@@ -99,6 +99,16 @@
 [v _RBIE RBIE `VEb  1 e 0 @91 ]
 "4134
 [v _RBIF RBIF `VEb  1 e 0 @88 ]
+"4146
+[v _RC3 RC3 `VEb  1 e 0 @59 ]
+"4149
+[v _RC4 RC4 `VEb  1 e 0 @60 ]
+"4152
+[v _RC5 RC5 `VEb  1 e 0 @61 ]
+"4155
+[v _RC6 RC6 `VEb  1 e 0 @62 ]
+"4185
+[v _RD0 RD0 `VEb  1 e 0 @64 ]
 "4197
 [v _RD4 RD4 `VEb  1 e 0 @68 ]
 "4200
@@ -124,24 +134,30 @@
 "13 C:\Users\TranVy\Desktop\PIC16F877\CONXELO_HITC.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"81
+"110
 } 0
 "21 C:\Users\TranVy\Desktop\PIC16F877\CONXELO_HITC.X\SSLINE.c
 [v _read_line_Error read_line_Error `(v  1 e 1 0 ]
 {
 "22
 [v read_line_Error@found found `i  1 a 2 4 ]
-"55
+"73
 } 0
-"61
+"79
 [v _motor_control motor_control `(v  1 e 1 0 ]
 {
-"63
-[v motor_control@pwmR pwmR `i  1 a 2 11 ]
-[v motor_control@pwmL pwmL `i  1 a 2 9 ]
-"64
-[v motor_control@correction correction `i  1 a 2 7 ]
-"88
+"81
+[v motor_control@pwmR pwmR `i  1 a 2 35 ]
+[v motor_control@pwmL pwmL `i  1 a 2 33 ]
+"124
+[v motor_control@correction correction `i  1 a 2 31 ]
+"82
+[v motor_control@base base `i  1 a 2 29 ]
+[v motor_control@kd_local kd_local `i  1 a 2 27 ]
+[v motor_control@kp_local kp_local `i  1 a 2 25 ]
+"84
+[v motor_control@d_error d_error `i  1 a 2 7 ]
+"147
 } 0
 "13
 [v _limit_pwm limit_pwm `(uc  1 e 1 0 ]

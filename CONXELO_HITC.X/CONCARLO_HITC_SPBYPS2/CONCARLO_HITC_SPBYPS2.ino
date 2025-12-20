@@ -45,6 +45,7 @@ void setup() {
   pinMode(AUTODRIVER, OUTPUT);
   pinMode(CARDRIVER, OUTPUT);
   pinMode(SPEED, OUTPUT);
+  pinMode(2, OUTPUT);
   error = ps2x.config_gamepad(PS2_CLK, PS2_CMD, PS2_CS, PS2_DAT, pressures, rumble);
   if (error == 0) {
     Serial.print("Đã tìm thấy bộ điều khiển ");
@@ -95,36 +96,26 @@ void loop() {
   } else {
     ps2x.read_gamepad(false, vibrate);
     if (ps2x.ButtonPressed(PSB_PINK)) {  //Nhấn nút |_|(PINK) trên PS2 Ngắt toàn độ chế độ của pic
-      digitalWrite(NGAT_PIC, HIGH);      //(RB6 trên pic)
+      digitalWrite(NGAT_PIC, HIGH);      //(RB4 trên pic)
       delay(100);
       digitalWrite(AUTODRIVER, LOW);
       digitalWrite(CARDRIVER, LOW);
-      bool Ps2 = false;
-      bool Auto = false;
+      Ps2 = false;
+      Auto = false;
     } else if (ps2x.ButtonPressed(PSB_RED)) {  //Nhấn nút O(RED) trên PS2 chuyển chế độ điều khiển bằng PS2
       digitalWrite(NGAT_PIC, LOW);
       digitalWrite(AUTODRIVER, LOW);
       digitalWrite(CARDRIVER, HIGH);  //(RD4 trên pic)
-      bool Ps2 = true;
-      bool Auto = false;
-      delay(100);
+      Ps2 = true;
+      Auto = false;
+      delay(50);
     } else if (ps2x.ButtonPressed(PSB_BLUE)) {  //Nhấn nút X(BLUE) trên PS2 chuyển chế độ auto
       digitalWrite(NGAT_PIC, LOW);
       digitalWrite(AUTODRIVER, HIGH);  //(RD5 trên pic)
       digitalWrite(CARDRIVER, LOW);
-      bool Ps2 = false;
-      bool Auto = true;
+      Ps2 = false;
+      Auto = true;
       delay(100);
-    } else if (Ps2 == true && Auto == false) {
-      ps2x.read_gamepad();
-      if (ps2x.ButtonPressed(PSB_L1))
-        digitalWrite(moveForward, HIGH);
-      else if (ps2x.ButtonPressed(PSB_R1))
-        digitalWrite(moveBackward, HIGH);
-      else if (ps2x.ButtonPressed(PSB_PAD_RIGHT))
-        digitalWrite(turnRight, HIGH);
-      else if (ps2x.ButtonPressed(PSB_PAD_LEFT))
-        digitalWrite(turnLeft, HIGH);
     } else {
       digitalWrite(moveForward, LOW);
       digitalWrite(moveBackward, LOW);
@@ -133,6 +124,66 @@ void loop() {
       digitalWrite(NGAT_PIC, LOW);
       digitalWrite(AUTODRIVER, LOW);
       digitalWrite(CARDRIVER, LOW);
+    }
+    while (Ps2 == true && Auto == false) {
+      ps2x.read_gamepad();
+      while (ps2x.ButtonPressed(PSB_L2)) {
+        ps2x.read_gamepad();
+        digitalWrite(moveForward, HIGH);  //RC3
+        digitalWrite(moveBackward, LOW);
+        digitalWrite(turnRight, LOW);
+        digitalWrite(turnLeft, LOW);
+        if (ps2x.ButtonReleased(PSB_L2)) {
+          digitalWrite(moveForward, LOW);
+          Serial.print("0");
+          break;
+        }
+      }
+      while (ps2x.ButtonPressed(PSB_R2)) {
+        ps2x.read_gamepad();
+        digitalWrite(moveBackward, HIGH);  //RC4
+        digitalWrite(moveForward, LOW);
+        digitalWrite(turnRight, LOW);
+        digitalWrite(turnLeft, LOW);
+        if (ps2x.ButtonReleased(PSB_R2)) {
+          Serial.print("1");
+          digitalWrite(moveBackward, LOW);
+          break;
+        }
+      }
+      while (ps2x.ButtonPressed(PSB_PAD_RIGHT)) {
+        ps2x.read_gamepad();
+        digitalWrite(turnRight, HIGH);  //RC5
+        digitalWrite(moveBackward, LOW);
+        digitalWrite(moveForward, LOW);
+        digitalWrite(turnLeft, LOW);
+        if (ps2x.ButtonReleased(PSB_PAD_RIGHT)) {
+          Serial.print("2");
+          digitalWrite(turnRight, LOW);
+          break;
+        }
+      }
+      while (ps2x.ButtonPressed(PSB_PAD_LEFT)) {
+        ps2x.read_gamepad();
+        digitalWrite(turnLeft, HIGH);  //RC6
+        digitalWrite(moveBackward, LOW);
+        digitalWrite(moveForward, LOW);
+        digitalWrite(turnRight, LOW);
+        if (ps2x.ButtonReleased(PSB_PAD_LEFT)) {
+          Serial.print("3");
+          digitalWrite(turnLeft, LOW);
+          break;
+        }
+      }
+      if (ps2x.ButtonPressed(PSB_PINK)) {
+        digitalWrite(NGAT_PIC, HIGH);  //(RB6 trên pic)
+        delay(100);
+        digitalWrite(AUTODRIVER, LOW);
+        digitalWrite(CARDRIVER, LOW);
+        Ps2 = false;
+        Auto = false;
+        break;
+      }
     }
   }
 }

@@ -48,7 +48,6 @@ void main(void) {
             if (RD6 == 1) {
                 autocar = false;
                 drivercar = true;
-                while (RD6 == 1); // ch? nh? nút
             }
         } else if (RD5 == 1) {
             __delay_ms(20);
@@ -71,11 +70,41 @@ void main(void) {
                         break;
                     }
                 }
-                //            if (RB0 == 1)
-                //                Status_Car(TurnRight, 255, 255);
+                //                            if (RB0 == 1)
+//                Status_Car(MoveForward, 255, 255);
             }
-
-
+        }
+        while (autocar == false && drivercar == true) {
+            if (RC3 == 1) {
+                __delay_ms(20);
+                if (RC3 == 1) {
+                    Status_Car(MoveForward, 150, 150);
+                }
+            } else if (RC4 == 1) {
+                __delay_ms(20);
+                if (RC4 == 1) {
+                    Status_Car(MoveBackward, 150, 150);
+                }
+            }  else if (RC5 == 1) {
+                __delay_ms(20);
+                if (RC5 == 1) {
+                    Status_Car(TurnRight, 150, 150);
+                }
+            } else if (RC6 == 1) {
+                __delay_ms(20);
+                if (RC6 == 1) {
+                    Status_Car(TurnLeft, 150, 150);
+                }
+            } else
+                if (RD4 == 1) {
+                __delay_ms(20);
+                if (RD4 == 1) {
+                    autocar = false;
+                    drivercar = false;
+                    Car_Forward(0, 0);
+                    break;
+                }
+            }
         }
     }
 }

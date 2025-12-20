@@ -16,11 +16,11 @@
 # 1 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/stdbool.h" 1 3
 # 18 "./Piclb_byNK.h" 2
 # 1 "./SSLINE.h" 1
-# 24 "./SSLINE.h"
+# 25 "./SSLINE.h"
 extern int Error;
-
-
-
+extern int base;
+extern int kd_local;
+extern int kp_local;
 unsigned char limit_pwm(int val);
 void read_line_Error(void);
 void motor_control(void);
@@ -2731,7 +2731,7 @@ static unsigned int lost_cnt = 0;
 
 unsigned char limit_pwm(int val) {
     if (val > 255) return 255;
-    if (val < 0) return 0;
+    if (val < 10) return 0;
     return val;
 }
 
@@ -2739,19 +2739,28 @@ unsigned char limit_pwm(int val) {
 
 void read_line_Error(void) {
     int found = 0;
-    if (RB3 == 1 && RB2 == 1) {
-        Error = 0;
+    if (RB3 == 1 && RB2 == 1 && RD0 == 1 ) {
+        Error = 7;
+        found = 1;
+    } else if (RB3 == 1 && RB2 == 1 && RD5 == 1 ) {
+        Error = -7;
         found = 1;
     } else if (RB5 == 1) {
-        Error = -4;
+        Error = -5;
         found = 1;
     } else if (RB0 == 1) {
-        Error = 4;
+        Error = 5;
         found = 1;
     } else if (RB4 == 1) {
-        Error = -2;
+        Error = -4;
         found = 1;
     } else if (RB1 == 1) {
+        Error = 4;
+        found = 1;
+    } else if (RB4 == 1 && RB3 == 1) {
+        Error = -2;
+        found = 1;
+    } else if (RB2 == 1 && RB1 == 1) {
         Error = 2;
         found = 1;
     } else if (RB3 == 1) {
@@ -2759,6 +2768,15 @@ void read_line_Error(void) {
         found = 1;
     } else if (RB2 == 1) {
         Error = 1;
+        found = 1;
+    } else if (RB4 == 1 && RB3 == 1 && RB2 == 1) {
+        Error = -3;
+        found = 1;
+    } else if (RB1 == 1 && RB3 == 1 && RB2 == 1) {
+        Error = 3;
+        found = 1;
+    } else if (RB3 == 1 && RB2 == 1) {
+        Error = 0;
         found = 1;
     }
 
@@ -2780,28 +2798,69 @@ void read_line_Error(void) {
 void motor_control(void) {
 
     int pwmL, pwmR;
-    int correction = 20 * Error;
+    int base, kp_local, kd_local;
 
-    if (lost_cnt > 6) {
-        if (last_Error > 0)
-            Status_Car(0x09, 160, 160);
-        else
-            Status_Car(0x06, 160, 160);
+    int d_error = Error - last_Error;
+
+
+    if (lost_cnt > 300) {
+        if (last_Error > 0) {
+            Status_Car(0x06, 200, 200);
+
+
+        } else {
+            Status_Car(0x09, 200, 200);
+
+
+        }
         return;
     }
 
-    pwmL = 140 - correction;
-    pwmR = 140 + correction + 6;
+
+    if (abs(Error) <= 1) {
+        base = 130;
+        kp_local = 23;
+        kd_local = 10;
+    } else if (abs(Error) == 7) {
+        base = 130 - 100;
+        kp_local = 23 + 3;
+        kd_local = 10 + 5;
+    } else if (abs(Error) == 2) {
+        base = 130 - 25;
+        kp_local = 23;
+        kd_local = 10 + 2;
+    } else if (abs(Error) == 3) {
+        base = 130 - 50;
+        kp_local = 23 + 4;
+        kd_local = 10 + 5;
+    } else if (abs(Error) >= 4 && abs(Error) <= 5) {
+        base = 130 - 75;
+        kp_local = 23 + 6;
+        kd_local = 10 + 6;
+    }
+
+
+    int correction = kp_local * Error + kd_local * d_error;
+
+    pwmL = base - correction;
+    pwmR = base + correction + 6;
 
     pwmL = limit_pwm(pwmL);
     pwmR = limit_pwm(pwmR);
 
-    if (abs(Error) >= 2) {
+
+    if (abs(Error) >= 2 && abs(Error) % 2 == 0) {
         if (Error > 0)
-            Status_Car(0x09, pwmL, pwmR);
-        else if (Error < 0)
-            Status_Car(0x06, pwmL, pwmR);
-        return;
-    } else
+            Status_Car(0x09, pwmR < 10 ? correction : pwmR, pwmL < 50 ? correction : pwmL);
+        else
+            Status_Car(0x06, pwmR < 10 ? correction : pwmR, pwmL < 50 ? correction : pwmL);
+    }
+    if (abs(Error) >= 2 && abs(Error) % 2 == 1) {
+        if (Error > 0)
+            Status_Car(0x09, pwmR < 30 ? correction : pwmR, pwmL < 30 ? correction : pwmL);
+        else
+            Status_Car(0x06, pwmR < 30 ? correction : pwmR, pwmL < 30 ? correction : pwmL);
+    } else {
         Car_Forward(pwmL, pwmR);
+    }
 }

@@ -18,11 +18,11 @@
 # 1 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/stdbool.h" 1 3
 # 18 "./Piclb_byNK.h" 2
 # 1 "./SSLINE.h" 1
-# 24 "./SSLINE.h"
+# 25 "./SSLINE.h"
 extern int Error;
-
-
-
+extern int base;
+extern int kd_local;
+extern int kp_local;
 unsigned char limit_pwm(int val);
 void read_line_Error(void);
 void motor_control(void);
@@ -2767,7 +2767,6 @@ void main(void) {
             if (RD6 == 1) {
                 autocar = 0;
                 drivercar = 1;
-                while (RD6 == 1);
             }
         } else if (RD5 == 1) {
             _delay((unsigned long)((20)*(20000000/4000.0)));
@@ -2793,8 +2792,38 @@ void main(void) {
 
 
             }
-
-
+        }
+        while (autocar == 0 && drivercar == 1) {
+            if (RC3 == 1) {
+                _delay((unsigned long)((20)*(20000000/4000.0)));
+                if (RC3 == 1) {
+                    Status_Car(0x05, 150, 150);
+                }
+            } else if (RC4 == 1) {
+                _delay((unsigned long)((20)*(20000000/4000.0)));
+                if (RC4 == 1) {
+                    Status_Car(0x0A, 150, 150);
+                }
+            } else if (RC5 == 1) {
+                _delay((unsigned long)((20)*(20000000/4000.0)));
+                if (RC5 == 1) {
+                    Status_Car(0x09, 150, 150);
+                }
+            } else if (RC6 == 1) {
+                _delay((unsigned long)((20)*(20000000/4000.0)));
+                if (RC6 == 1) {
+                    Status_Car(0x06, 150, 150);
+                }
+            } else
+                if (RD4 == 1) {
+                _delay((unsigned long)((20)*(20000000/4000.0)));
+                if (RD4 == 1) {
+                    autocar = 0;
+                    drivercar = 0;
+                    Car_Forward(0, 0);
+                    break;
+                }
+            }
         }
     }
 }

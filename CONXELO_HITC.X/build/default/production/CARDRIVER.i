@@ -12,11 +12,11 @@
 # 1 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/stdbool.h" 1 3
 # 18 "./Piclb_byNK.h" 2
 # 1 "./SSLINE.h" 1
-# 24 "./SSLINE.h"
+# 25 "./SSLINE.h"
 extern int Error;
-
-
-
+extern int base;
+extern int kd_local;
+extern int kp_local;
 unsigned char limit_pwm(int val);
 void read_line_Error(void);
 void motor_control(void);
