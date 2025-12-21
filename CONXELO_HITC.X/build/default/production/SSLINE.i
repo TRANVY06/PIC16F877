@@ -17,10 +17,10 @@
 # 18 "./Piclb_byNK.h" 2
 # 1 "./SSLINE.h" 1
 # 25 "./SSLINE.h"
-extern int Error;
-extern int base;
-extern int kd_local;
-extern int kp_local;
+int Error;
+int base;
+int kd_local;
+int kp_local;
 unsigned char limit_pwm(int val);
 void read_line_Error(void);
 void motor_control(void);

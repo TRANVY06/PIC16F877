@@ -22,10 +22,10 @@
 //#define LOST_SPEED     150
 #define MOTOR_R_COMP 6
 #define LOST_LIMIT  300
-extern int Error;
-extern int base;
-extern int kd_local;
-extern int kp_local;
+int Error;
+int base;
+int kd_local;
+int kp_local;
 unsigned char limit_pwm(int val);
 void read_line_Error(void);
 void motor_control(void);

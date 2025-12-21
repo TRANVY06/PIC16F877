@@ -16,7 +16,7 @@ void Status_Car(unsigned char status, unsigned int sp1, unsigned int sp2) {
 }
 
 // ====== DÙNG RIÊNG CHO LINE FOLLOWER ======
-void Car_Forward(unsigned int pwmL, unsigned int pwmR) {
+void Car_Forward(unsigned int pwmL, unsigned int pwmR) {//pwmL==> BTS trái , pwmR==> BTS Ph?i 
     PORTD &= 0xF0;
     PORTD |= MoveForward;
     analogWrite_8bits(pwmL, pwmR);

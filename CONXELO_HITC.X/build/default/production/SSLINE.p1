@@ -32,6 +32,18 @@ Version 4.0 HI-TECH Software Intermediate Code
 "18 ./CARDRIVER.h
 [; ;./CARDRIVER.h: 18: void Car_Forward(unsigned int pwmL, unsigned int pwmR);
 [v _Car_Forward `(v ~T0 @X0 0 ef2`ui`ui ]
+"25 ./SSLINE.h
+[; ;./SSLINE.h: 25: int Error;
+[v _Error `i ~T0 @X0 1 e ]
+"26
+[; ;./SSLINE.h: 26: int base;
+[v _base `i ~T0 @X0 1 e ]
+"27
+[; ;./SSLINE.h: 27: int kd_local;
+[v _kd_local `i ~T0 @X0 1 e ]
+"28
+[; ;./SSLINE.h: 28: int kp_local;
+[v _kp_local `i ~T0 @X0 1 e ]
 "54 C:/Program Files/Microchip/MPLABX/v6.25/packs/Microchip/PIC16Fxxx_DFP/1.6.156/xc8\pic\include\proc/pic16f887.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.25/packs/Microchip/PIC16Fxxx_DFP/1.6.156/xc8\pic\include\proc/pic16f887.h: 54: __asm("INDF equ 00h");
 [; <" INDF equ 00h ;# ">

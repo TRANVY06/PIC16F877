@@ -37,6 +37,8 @@
 [v _motor_control motor_control `(v  1 e 1 0 ]
 "23 C:\Users\TranVy\Desktop\PIC16F877\CONXELO_HITC.X/interrupt_pic.h
 [v _read_dataPortB read_dataPortB `ui  1 e 2 0 ]
+"25 C:\Users\TranVy\Desktop\PIC16F877\CONXELO_HITC.X/SSLINE.h
+[v _Error Error `i  1 e 2 0 ]
 "228 C:/Program Files/Microchip/MPLABX/v6.25/packs/Microchip/PIC16Fxxx_DFP/1.6.156/xc8\pic\include\proc/pic16f887.h
 [v _PORTB PORTB `VEuc  1 e 1 @6 ]
 "352
@@ -125,9 +127,7 @@
 [v _drivercar drivercar `a  1 e 1 0 ]
 "10
 [v _autocar autocar `a  1 e 1 0 ]
-"7 C:\Users\TranVy\Desktop\PIC16F877\CONXELO_HITC.X\SSLINE.c
-[v _Error Error `i  1 e 2 0 ]
-"8
+"8 C:\Users\TranVy\Desktop\PIC16F877\CONXELO_HITC.X\SSLINE.c
 [v _last_Error last_Error `i  1 s 2 last_Error ]
 "9
 [v _lost_cnt lost_cnt `ui  1 s 2 lost_cnt ]

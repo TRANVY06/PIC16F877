@@ -260,6 +260,18 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3546
 [; ;C:/Program Files/Microchip/MPLABX/v6.25/packs/Microchip/PIC16Fxxx_DFP/1.6.156/xc8\pic\include\proc/pic16f887.h: 3546: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
+"25 ./SSLINE.h
+[; ;./SSLINE.h: 25: int Error;
+[v _Error `i ~T0 @X0 1 e ]
+"26
+[; ;./SSLINE.h: 26: int base;
+[v _base `i ~T0 @X0 1 e ]
+"27
+[; ;./SSLINE.h: 27: int kd_local;
+[v _kd_local `i ~T0 @X0 1 e ]
+"28
+[; ;./SSLINE.h: 28: int kp_local;
+[v _kp_local `i ~T0 @X0 1 e ]
 "23 ./interrupt_pic.h
 [; ;./interrupt_pic.h: 23:     unsigned int read_dataPortB;
 [v _read_dataPortB `ui ~T0 @X0 1 e ]
